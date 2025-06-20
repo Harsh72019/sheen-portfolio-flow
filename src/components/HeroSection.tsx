@@ -1,23 +1,6 @@
 
-import React, { Suspense } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
-
-const AnimatedSphere = () => {
-  return (
-    <mesh>
-      <Sphere args={[1, 100, 200]} scale={2}>
-        <MeshDistortMaterial
-          color="#6366f1"
-          distort={0.3}
-          speed={1.5}
-          roughness={0}
-        />
-      </Sphere>
-    </mesh>
-  );
-};
 
 const HeroSection = () => {
   return (
@@ -69,31 +52,43 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="h-96 lg:h-[500px]"
+          className="h-96 lg:h-[500px] flex items-center justify-center"
         >
-          <Canvas
-            gl={{ 
-              antialias: true,
-              alpha: true,
-              preserveDrawingBuffer: false
-            }}
-            camera={{ position: [0, 0, 5], fov: 75 }}
-            onCreated={({ gl }) => {
-              gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            }}
-          >
-            <Suspense fallback={null}>
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[10, 10, 5]} intensity={1} />
-              <AnimatedSphere />
-              <OrbitControls 
-                enableZoom={false} 
-                autoRotate 
-                autoRotateSpeed={1}
-                enablePan={false}
-              />
-            </Suspense>
-          </Canvas>
+          <div className="relative">
+            <motion.div
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 opacity-80 shadow-2xl"
+            />
+            <motion.div
+              animate={{ 
+                rotate: -360,
+                scale: [1.1, 1, 1.1]
+              }}
+              transition={{ 
+                rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="absolute inset-8 rounded-full bg-gradient-to-tl from-blue-400 via-cyan-400 to-blue-500 opacity-60"
+            />
+            <motion.div
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ 
+                rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+                scale: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="absolute inset-16 rounded-full bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300 opacity-40"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
