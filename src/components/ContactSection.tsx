@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
 const ContactSection = () => {
   return (
-    <section className="py-20 bg-gray-900 text-white">
+    <section className="py-20 bg-gray-900 text-white" id="contact">
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -18,12 +17,12 @@ const ContactSection = () => {
             <br />
             <span className="text-indigo-400">Amazing Together</span>
           </h2>
-          
+
           <p className="text-xl text-gray-300 mb-12 leading-relaxed">
             Ready to bring your vision to life? Let's discuss how we can transform 
             your ideas into exceptional digital experiences.
           </p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -35,51 +34,56 @@ const ContactSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition-all duration-300"
+              onClick={() => window.location.href = "#portfolio"}
             >
               Start a Project
             </motion.button>
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 border border-gray-500 text-white rounded-full hover:border-white transition-all duration-300"
+              onClick={() =>
+                window.open(
+                  "https://drive.google.com/file/d/16pDLa0WFsVagH4AXBGg-tLbmGfGflDhr/view?usp=sharing",
+                  "_blank"
+                )
+              }
             >
               Download Resume
             </motion.button>
           </motion.div>
-          
+
           <div className="flex justify-center space-x-8 text-gray-400">
             <motion.a
               whileHover={{ scale: 1.1, color: "#ffffff" }}
-              href="#"
+              href="https://www.linkedin.com/in/harsh-bali-423987228/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-colors duration-300"
             >
               LinkedIn
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.1, color: "#ffffff" }}
-              href="#"
-              className="transition-colors duration-300"
-            >
-              Dribbble
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1, color: "#ffffff" }}
-              href="#"
-              className="transition-colors duration-300"
-            >
-              GitHub
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1, color: "#ffffff" }}
-              href="#"
+              href="mailto:harshbali374@gmail.com"
               className="transition-colors duration-300"
             >
               Email
             </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, color: "#ffffff" }}
+              href="https://github.com/Harsh72019"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-300"
+            >
+              GitHub
+            </motion.a>
           </div>
         </motion.div>
       </div>
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -87,7 +91,7 @@ const ContactSection = () => {
         viewport={{ once: true }}
         className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-500 text-sm"
       >
-        <p>&copy; 2024 Creative Professional. All rights reserved.</p>
+        <p>&copy; 2024 Harsh Bali. All rights reserved.</p>
       </motion.div>
     </section>
   );

@@ -3,12 +3,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { name: "UI/UX Design", level: 95, color: "bg-blue-500" },
-  { name: "React & TypeScript", level: 90, color: "bg-emerald-500" },
-  { name: "Creative Direction", level: 88, color: "bg-purple-500" },
-  { name: "Brand Strategy", level: 85, color: "bg-pink-500" },
-  { name: "Motion Graphics", level: 82, color: "bg-indigo-500" },
-  { name: "3D Design", level: 78, color: "bg-orange-500" }
+{ name: "NodeJs", level: 95, color: "bg-teal-500" },
+  { name: "Express", level: 95, color: "bg-rose-500" },
+  { name: "BullMQ", level: 85, color: "bg-amber-500" },
+  { name: "Kafka", level: 82, color: "bg-lime-500" },
+  { name: "Redis", level: 80, color: "bg-cyan-500" },
+  { name: "Socket", level: 78, color: "bg-fuchsia-500" },
+  { name: "MongoDB (Mongoose)", level: 80, color: "bg-sky-500" },
+  { name: "PostgreSQL & MySQL (Sequelize)", level: 80, color: "bg-violet-500" },
+  { name: "React & TypeScript", level: 60, color: "bg-yellow-500" }
 ];
 
 const SkillsSection = () => {
@@ -26,7 +29,7 @@ const SkillsSection = () => {
             Skills & Expertise
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Technical proficiency and creative expertise honed through years of hands-on experience.
+            Technical proficiency honed through years of hands-on experience and building systems from scratch.
           </p>
         </motion.div>
         

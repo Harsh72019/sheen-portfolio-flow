@@ -4,25 +4,25 @@ import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    company: "Tech Innovations Inc.",
-    role: "Senior Creative Director",
-    period: "2022 - Present",
-    description: "Leading creative strategy and design direction for digital transformation projects.",
-    achievements: ["Led team of 12 designers", "Increased user engagement by 150%", "Won 3 industry awards"]
+    company: "Idea Usher",
+    role: "Senior Backend Developer",
+    period: "2025 - Present",
+    description: "Developing scalable backend and AI solutions for diverse clients, focusing on performance and reliability.",
+    achievements: ["Optimized server performance by 30%", "Implemented AI-driven features" , "Reduced response time by from over 20 seconds to under 1 second"]
   },
   {
-    company: "Digital Solutions Co.",
-    role: "UX/UI Designer",
-    period: "2020 - 2022", 
-    description: "Designed user-centered digital experiences for Fortune 500 companies.",
-    achievements: ["Redesigned 15+ web applications", "Improved conversion rates by 80%", "Mentored junior designers"]
+    company: "Sartia Global",
+    role: "Backend Developer (Supervisor)",
+    period: "2024 - 2025", 
+    description: "Led a team of developers to build robust backend systems, enhancing system efficiency and scalability.",
+    achievements: ["Developed 10+ backend services", "Optimized SQL queries", "Improved system uptime by 20%"]
   },
   {
-    company: "Creative Studio",
-    role: "Product Designer",
-    period: "2018 - 2020",
-    description: "Developed comprehensive design systems and brand identities.",
-    achievements: ["Created 5 design systems", "Launched 20+ digital products", "Established design processes"]
+    company: "Faction IT Solutions",
+    role: "Full Stack Developer",
+    period: "2023 - 2024",
+    description: "Designed and implemented full-stack applications, integrating frontend and backend technologies to deliver seamless user experiences.",
+    achievements: ["Developed 5+ full-stack applications", "Implemented responsive design", "Enhanced user engagement by 25%"]
   }
 ];
 
