@@ -11,6 +11,7 @@ const skills = [
   { name: "Socket", level: 78, color: "bg-fuchsia-500" },
   { name: "MongoDB (Mongoose)", level: 80, color: "bg-sky-500" },
   { name: "PostgreSQL & MySQL (Sequelize)", level: 80, color: "bg-violet-500" },
+  { name: "AWS, cPanel, S3, cloudinary", level: 70, color: "bg-pink-500" },
   { name: "React & TypeScript", level: 60, color: "bg-yellow-500" }
 ];
 

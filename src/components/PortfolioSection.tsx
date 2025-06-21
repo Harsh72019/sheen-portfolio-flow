@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const portfolioItems = [
   {
     id: 1,
-    title: "Paper Trading Simulator",
+    title: "Trading Simulator",
     category: "Trading Infrastructure",
     description:
       "Simulates stock trades with real-time position tracking, live P&L updates, and FIFO-based trade matching. Uses polygon APIs, MongoDB, WebSocket updates, and Redis queues for low-latency event handling And provides AI-based trade analysis of your trades",
@@ -35,16 +35,16 @@ const portfolioItems = [
     hoverColor: "from-blue-900 to-purple-900",
   },
   {
-    id: 4,
-    title: "CodersPoint",
-    category: "High-Performance Content Delivery",
-    description:
-      "Full-stack educational platform with Redis caching, SSR optimization, and clustered Node.js APIs. Improved engagement by 50%, cut load times by 60%.",
-    image:
-      "https://res.cloudinary.com/dfpmkus1i/image/upload/v1750511894/coderspoint_coqdc3.png",
-    color: "from-pink-500 to-rose-600",
-    hoverColor: "from-pink-900 to-rose-900",
-  },
+  id: 4,
+  title: "EazeAccounts",
+  category: "Financial Accounting Software",
+  description:
+    "A modern accounting platform designed to streamline financial data processing and reconciliation. Implemented a scalable backend using Node.js, Express, and Redis with priority job queues via BullMQ, and integrated RESTful APIs for ledger, transaction, and reporting modules.",
+  image:
+    "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1126&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  color: "from-purple-500 to-indigo-600",
+  hoverColor: "from-purple-900 to-indigo-900",
+},
   {
     id: 5,
     title: "MindSpace",
@@ -81,7 +81,7 @@ const PortfolioSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-thin text-gray-900 mb-4">
-            Selected Work
+            Hall of Fame
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             A collection of projects that showcase creativity, technical
