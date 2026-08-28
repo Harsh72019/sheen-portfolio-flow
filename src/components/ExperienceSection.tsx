@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import {
   Briefcase,
   Calendar,
@@ -73,8 +73,19 @@ const experiences: Experience[] = [
 ];
 
 const ExperienceSection: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 70%", "end 80%"],
+  });
+
+  const lineHeight = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "100%"]), {
+    stiffness: 80,
+    damping: 25,
+  });
+
   return (
-    <section className="py-24 relative overflow-hidden" id="experience">
+    <section className="py-24 relative overflow-hidden" id="experience" ref={containerRef}>
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Header */}
         <motion.div
@@ -99,8 +110,14 @@ const ExperienceSection: React.FC = () => {
 
         {/* Vertical Glowing Timeline */}
         <div className="relative">
-          {/* Glowing Center Laser Line (Desktop) */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-cyan-500 to-purple-500 opacity-30" />
+          {/* Static Track Background Line */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-slate-800/80" />
+
+          {/* Dynamic Laser Beam Fill linked to scroll */}
+          <motion.div
+            style={{ height: lineHeight }}
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-cyan-400 via-indigo-500 to-emerald-400 shadow-[0_0_15px_rgba(56,189,248,0.9)] rounded-full origin-top z-10"
+          />
 
           <div className="space-y-12 sm:space-y-16">
             {experiences.map((exp, index) => {

@@ -255,12 +255,14 @@ const PortfolioSection: React.FC = () => {
               <motion.div
                 key={item.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.9, y: 40, rotateX: 8 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1, ease: "easeOut" }}
                 onClick={() => setSelectedProject(item)}
-                className="group cursor-pointer glass-card glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-between border border-white/10"
+                className="group cursor-pointer glass-card glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-between border border-white/10 shadow-2xl relative"
               >
                 {/* Image Container with Hover Zoom */}
                 <div className="relative h-52 w-full overflow-hidden">

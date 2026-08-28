@@ -109,11 +109,11 @@ const SkillsSection: React.FC = () => {
           {skillCategories.map((category, catIdx) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: catIdx * 0.1 }}
-              viewport={{ once: true }}
-              className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 bg-[#0a0f1e]/80 shadow-2xl flex flex-col justify-between"
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, delay: catIdx * 0.15, ease: "easeOut" }}
+              className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 bg-[#0a0f1e]/80 shadow-2xl flex flex-col justify-between hover:border-indigo-500/30 transition-colors"
             >
               {/* Category Header */}
               <div className="mb-6">
@@ -133,12 +133,17 @@ const SkillsSection: React.FC = () => {
               {/* Skills Progress List */}
               <div className="space-y-4">
                 {category.skills.map((skill, skillIdx) => (
-                  <div key={skill.name} className="space-y-1.5">
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-1.5 cursor-default group"
+                  >
                     <div className="flex items-center justify-between text-xs font-medium">
-                      <span className="text-slate-200 font-semibold flex items-center gap-1.5">
+                      <span className="text-slate-200 font-semibold group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
                         {skill.name}
                       </span>
-                      <span className="text-slate-400 text-[11px] font-mono">
+                      <span className="text-slate-400 text-[11px] font-mono group-hover:text-indigo-300 transition-colors">
                         {skill.useCase}
                       </span>
                     </div>
@@ -149,17 +154,17 @@ const SkillsSection: React.FC = () => {
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{
-                          duration: 1.2,
-                          delay: catIdx * 0.1 + skillIdx * 0.05,
-                          ease: "easeOut",
+                          duration: 1.4,
+                          delay: catIdx * 0.1 + skillIdx * 0.06,
+                          ease: [0.16, 1, 0.3, 1],
                         }}
                         viewport={{ once: true }}
                         className={`h-full rounded-full bg-gradient-to-r ${skill.color} relative`}
                       >
-                        <div className="absolute inset-0 bg-white/20 animate-pulse" />
+                        <div className="absolute inset-0 bg-white/25 animate-pulse" />
                       </motion.div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const BackgroundEffects: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const { scrollY } = useScroll();
+
+  const parallaxY1 = useTransform(scrollY, [0, 3000], [0, -180]);
+  const parallaxY2 = useTransform(scrollY, [0, 3000], [0, 150]);
+  const parallaxY3 = useTransform(scrollY, [0, 3000], [0, -220]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -132,11 +137,11 @@ const BackgroundEffects: React.FC = () => {
       {/* Cyber Grid */}
       <div className="absolute inset-0 cyber-grid opacity-35" />
 
-      {/* Ambient Gradient Glow Orbs */}
+      {/* Ambient Gradient Glow Orbs with Scroll Parallax */}
       <motion.div
+        style={{ y: parallaxY1 }}
         animate={{
-          x: [0, 60, 0, -40, 0],
-          y: [0, -50, 40, 20, 0],
+          x: [0, 50, 0, -40, 0],
           scale: [1, 1.15, 0.95, 1.08, 1],
         }}
         transition={{
@@ -148,9 +153,9 @@ const BackgroundEffects: React.FC = () => {
       />
 
       <motion.div
+        style={{ y: parallaxY2 }}
         animate={{
-          x: [0, -60, 30, -30, 0],
-          y: [0, 60, -30, 50, 0],
+          x: [0, -50, 30, -30, 0],
           scale: [1, 1.2, 0.9, 1.1, 1],
         }}
         transition={{
@@ -162,9 +167,9 @@ const BackgroundEffects: React.FC = () => {
       />
 
       <motion.div
+        style={{ y: parallaxY3 }}
         animate={{
           x: [0, 40, -50, 20, 0],
-          y: [0, -40, 60, -20, 0],
           scale: [1, 1.1, 0.95, 1.15, 1],
         }}
         transition={{
@@ -186,3 +191,4 @@ const BackgroundEffects: React.FC = () => {
 };
 
 export default BackgroundEffects;
+
