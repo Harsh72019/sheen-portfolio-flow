@@ -29,6 +29,7 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [isNearBottom, setIsNearBottom] = useState(false);
   const lastScrollY = React.useRef(0);
 
   const { scrollYProgress } = useScroll();
@@ -42,6 +43,10 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 40);
+
+      // Check if near bottom/footer
+      const atBottom = (window.innerHeight + currentScrollY) >= (document.documentElement.scrollHeight - 300);
+      setIsNearBottom(atBottom);
 
       // Smart auto-hide on mobile: Hide when scrolling down, show when scrolling up
       if (currentScrollY < 60) {
@@ -255,9 +260,9 @@ const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Mobile Quick Action Pill (Appears when scrolled past hero) */}
+      {/* Floating Mobile Quick Action Pill (Appears when scrolled, hidden in Contact & Footer) */}
       <AnimatePresence>
-        {scrolled && (
+        {scrolled && activeSection !== "contact" && !isNearBottom && (
           <motion.a
             href="#contact"
             initial={{ opacity: 0, scale: 0.85, y: 15 }}
