@@ -145,16 +145,16 @@ const ContactSection: React.FC = () => {
         {/* Contact Grid */}
         <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
-          {/* Left Info Column (5 cols) */}
+          {/* Left Info Column (5 cols) - Visible on Desktop, Hidden on mobile phones/tablets */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 space-y-4"
+            className="hidden lg:block lg:col-span-5 space-y-4"
           >
-            <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/10 bg-[#090d18]/85 shadow-xl space-y-4 sm:space-y-5">
-              <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
+            <div className="glass-panel p-6 rounded-2xl border border-white/10 bg-[#090d18]/85 shadow-xl space-y-5">
+              <h3 className="text-base font-semibold text-white tracking-tight">
                 Direct Contact
               </h3>
 
@@ -245,13 +245,13 @@ const ContactSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Form Column (7 cols) */}
+          {/* Right Form Column (7 cols on desktop, full width on mobile) */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="lg:col-span-7"
+            className="w-full lg:col-span-7 max-w-xl mx-auto lg:max-w-none"
           >
             <div className="glass-panel p-4 sm:p-7 rounded-2xl border border-white/10 bg-[#090d18]/90 shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-4">
