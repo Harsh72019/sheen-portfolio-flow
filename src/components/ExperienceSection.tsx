@@ -58,7 +58,7 @@ const ExperienceSection: React.FC = () => {
   });
 
   return (
-    <section className="py-16 relative overflow-hidden" id="experience" ref={containerRef}>
+    <section className="py-14 sm:py-16 relative overflow-hidden" id="experience" ref={containerRef}>
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         
         {/* Header */}
@@ -67,23 +67,23 @@ const ExperienceSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-8 sm:mb-10"
         >
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
             Work Experience
           </h2>
         </motion.div>
 
-        {/* Compact Vertical Timeline */}
-        <div className="relative pl-6 sm:pl-0">
+        {/* Responsive Vertical Timeline */}
+        <div className="relative">
           
           {/* Static Track Line */}
-          <div className="absolute left-2 sm:left-1/3 top-2 bottom-2 w-px bg-white/10" />
+          <div className="absolute left-3.5 sm:left-1/3 top-2 bottom-2 w-px bg-white/10" />
 
           {/* Dynamic Laser Beam Fill */}
           <motion.div
             style={{ height: lineHeight }}
-            className="absolute left-2 sm:left-1/3 top-2 w-0.5 bg-indigo-500 origin-top z-10 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
+            className="absolute left-3.5 sm:left-1/3 top-2 w-0.5 bg-indigo-500 origin-top z-10 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
           />
 
           <div className="space-y-6 sm:space-y-8">
@@ -94,10 +94,10 @@ const ExperienceSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 items-start group"
+                className="relative pl-9 sm:pl-0 sm:grid sm:grid-cols-12 gap-3 sm:gap-6 items-start group"
               >
-                {/* Left Col (Desktop): Period & Company Info */}
-                <div className="sm:col-span-4 sm:text-right space-y-1.5 sm:pr-6">
+                {/* Desktop Left Column (sm+) */}
+                <div className="hidden sm:block sm:col-span-4 sm:text-right space-y-1.5 sm:pr-6">
                   <div className="flex sm:justify-end items-center gap-1.5">
                     <span className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-medium bg-white/[0.04] text-slate-300 border border-white/10">
                       {exp.period}
@@ -107,25 +107,42 @@ const ExperienceSection: React.FC = () => {
                     <Building2 className="w-3.5 h-3.5 text-slate-400" />
                     <span>{exp.company}</span>
                   </div>
-                  {/* Highlight Metric Pill */}
                   <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400">
                     <TrendingUp className="w-3 h-3" />
                     <span>{exp.metrics}</span>
                   </div>
                 </div>
 
-                {/* Center Timeline Node Dot */}
-                <div className="absolute left-2 sm:left-1/3 -translate-x-1/2 top-1.5 w-5 h-5 rounded-full bg-[#070a12] border border-white/20 flex items-center justify-center z-20 shadow-md group-hover:border-indigo-400 transition-colors">
+                {/* Timeline Center Node Dot */}
+                <div className="absolute left-3.5 sm:left-1/3 -translate-x-1/2 top-1.5 w-5 h-5 rounded-full bg-[#070a12] border border-white/20 flex items-center justify-center z-20 shadow-md group-hover:border-indigo-400 transition-colors">
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                 </div>
 
-                {/* Right Col: Compact Card */}
-                <div className="sm:col-span-8 sm:pl-4">
-                  <div className="glass-panel p-4 sm:p-5 rounded-xl border border-white/10 bg-[#090e1c]/80 shadow-md space-y-3 group-hover:border-white/20 transition-all">
+                {/* Right Column / Mobile Card */}
+                <div className="sm:col-span-8 sm:pl-4 space-y-2">
+                  
+                  {/* Mobile Header Row (< sm only) */}
+                  <div className="sm:hidden flex flex-wrap items-center justify-between gap-1.5 pb-0.5">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-white">
+                      <Building2 className="w-3.5 h-3.5 text-indigo-400" />
+                      <span>{exp.company}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/[0.04] text-slate-300 border border-white/10">
+                        {exp.period}
+                      </span>
+                      <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        {exp.metrics.split(" ")[0]}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="glass-panel p-3.5 sm:p-5 rounded-xl border border-white/10 bg-[#090e1c]/80 shadow-md space-y-2.5 sm:space-y-3 group-hover:border-white/20 transition-all">
                     
                     {/* Role Title */}
                     <div className="flex items-center justify-between gap-2">
-                      <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
+                      <h3 className="text-xs sm:text-base font-semibold text-white tracking-tight">
                         {exp.role}
                       </h3>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-400 border border-white/5">

@@ -5,8 +5,6 @@ import {
   ArrowRight,
   Copy,
   Check,
-  Terminal,
-  Activity,
   Briefcase,
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
@@ -28,38 +26,38 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen pt-32 pb-20 relative flex items-center justify-center overflow-hidden" id="hero">
+    <section className="min-h-[85vh] sm:min-h-screen pt-24 sm:pt-32 pb-14 sm:pb-20 relative flex items-center justify-center overflow-hidden" id="hero">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           
           {/* Left Hero Text Column (7 cols) */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="lg:col-span-7 space-y-6 text-center lg:text-left"
+            className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left"
           >
             {/* Availability Pill */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 text-xs font-medium tracking-wide backdrop-blur-md"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 text-[11px] sm:text-xs font-medium tracking-wide backdrop-blur-md"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>Available for Senior Backend & Distributed Systems Roles</span>
+              <span>Available for Senior Backend Roles</span>
             </motion.div>
 
             {/* Main Headline */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <motion.h1
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]"
+                className="text-3xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.15]"
               >
                 Hi, I'm{" "}
                 <span className="text-gradient-silver">
@@ -72,10 +70,10 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="text-xl sm:text-2xl font-medium text-slate-300 font-mono flex items-center justify-center lg:justify-start gap-2 pt-1"
+                className="text-base sm:text-xl lg:text-2xl font-medium text-slate-300 font-mono flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 pt-0.5"
               >
                 <span className="text-indigo-400">&gt;</span>
-                <span className="text-indigo-300 font-semibold">
+                <span className="text-indigo-300 font-semibold truncate">
                   <Typewriter
                     words={[
                       "Senior Backend Engineer",
@@ -93,12 +91,12 @@ const HeroSection: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Concise Value Description without tool spam */}
+            {/* Concise Value Description */}
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-xs sm:text-base text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
               Architecting high-throughput, fault-tolerant backend infrastructures. Specializing in event streaming pipelines, sub-second query indexing, and scalable microservices engineered for extreme concurrency and zero downtime.
             </motion.p>
@@ -108,63 +106,63 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 pt-1"
             >
               <a
                 href="#portfolio"
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all hover:scale-[1.02] shadow-sm"
+                className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm transition-all hover:scale-[1.02] shadow-sm"
               >
-                <span>View Systems & Work</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>View Systems</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
 
               <a
                 href="#experience"
-                className="flex items-center gap-2 px-5 py-3 rounded-full bg-white/[0.05] hover:bg-white/[0.08] text-slate-200 hover:text-white font-medium text-sm border border-white/10 transition-all hover:scale-[1.02]"
+                className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.05] hover:bg-white/[0.08] text-slate-200 hover:text-white font-medium text-xs sm:text-sm border border-white/10 transition-all hover:scale-[1.02]"
               >
-                <Briefcase className="w-4 h-4 text-slate-400" />
-                Work History
+                <Briefcase className="w-3.5 h-3.5 text-slate-400" />
+                Experience
               </a>
 
               <button
                 onClick={copyEmail}
-                className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-mono border border-white/10 transition-all"
+                className="flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-mono border border-white/10 transition-all"
                 title="Click to copy email address"
               >
                 {copied ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
+                    <span className="text-emerald-400 text-xs">Copied!</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5 text-slate-400" />
-                    <span>Copy Email</span>
+                    <span className="text-xs">Email</span>
                   </>
                 )}
               </button>
             </motion.div>
 
-            {/* Key Engineering Domains (Clean, non-repetitive) */}
+            {/* Key Engineering Domains */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.6 }}
-              className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs font-mono text-slate-400"
+              className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2 text-xs font-mono text-slate-400"
             >
-              <span className="text-slate-500 uppercase text-[11px] tracking-wider mr-1">
+              <span className="text-slate-500 uppercase text-[10px] sm:text-[11px] tracking-wider mr-1">
                 Specialties:
               </span>
               {[
                 "High-Throughput APIs",
                 "Distributed Queues",
-                "Query Performance (GIN)",
-                "gRPC / RPC Services",
-                "Cloud Containerization",
+                "Query Tuning (GIN)",
+                "gRPC Services",
+                "Docker / K8s",
               ].map((domain) => (
                 <span
                   key={domain}
-                  className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.07] text-slate-300 text-[11px]"
+                  className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-white/[0.04] border border-white/[0.07] text-slate-300 text-[10px] sm:text-[11px]"
                 >
                   {domain}
                 </span>
@@ -172,14 +170,14 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Clean Obsidian Portrait & Telemetry Terminal */}
+          {/* Right Column: Circular Portrait & Telemetry Terminal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5 flex flex-col items-center justify-center relative space-y-6"
+            className="lg:col-span-5 flex flex-col items-center justify-center relative space-y-5"
           >
-            {/* Elegant Portrait Frame (Hidden on mobile phones, visible on sm+) */}
+            {/* Circular Portrait Frame (Hidden on mobile phones, visible on sm+) */}
             <div className="hidden sm:flex relative w-64 h-64 sm:w-72 sm:h-72 items-center justify-center">
               
               {/* Subtle back ambient glow */}
@@ -221,7 +219,7 @@ const HeroSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-[10px] uppercase font-mono text-slate-400">Production Scale</div>
-                  <div className="text-xs font-semibold text-white">10+ Microservices</div>
+                  <div className="text-xs font-semibold text-white">10+ Services</div>
                 </div>
               </motion.div>
             </div>
@@ -231,15 +229,15 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="w-full max-w-sm glass-card rounded-2xl p-4 border border-white/10 font-mono text-xs shadow-xl bg-[#090d18]/90"
+              className="w-full max-w-sm glass-card rounded-xl sm:rounded-2xl p-3.5 sm:p-4 border border-white/10 font-mono text-xs shadow-xl bg-[#090d18]/90"
             >
               {/* Terminal Window Header */}
-              <div className="flex items-center justify-between pb-2.5 border-b border-white/10 mb-3">
+              <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-600 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-600 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-600 inline-block" />
-                  <span className="text-[11px] text-slate-400 ml-2">sys-node-01</span>
+                  <span className="w-2 h-2 rounded-full bg-slate-600 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-slate-600 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-slate-600 inline-block" />
+                  <span className="text-[10px] sm:text-[11px] text-slate-400 ml-1.5">sys-node-01</span>
                 </div>
                 <div className="flex gap-1 text-[10px]">
                   <button
@@ -267,7 +265,7 @@ const HeroSection: React.FC = () => {
 
               {/* Code / Output Content */}
               {activeCodeTab === "arch" && (
-                <div className="text-slate-300 space-y-1 text-[11px] leading-relaxed">
+                <div className="text-slate-300 space-y-1 text-[10px] sm:text-[11px] leading-relaxed">
                   <div className="text-slate-500">// Distributed Engine Config</div>
                   <div>
                     <span className="text-indigo-300">"topology"</span>: <span className="text-slate-100">"event-driven-microservices"</span>,
@@ -285,7 +283,7 @@ const HeroSection: React.FC = () => {
               )}
 
               {activeCodeTab === "telemetry" && (
-                <div className="text-slate-300 space-y-1 text-[11px]">
+                <div className="text-slate-300 space-y-1 text-[10px] sm:text-[11px]">
                   <div className="text-emerald-400">● Cache Cluster: Healthy (0.2ms latency)</div>
                   <div className="text-emerald-400">● Stream Ingestion: 0% message lag</div>
                   <div className="text-slate-300">● Process RSS: 128MB normal footprint</div>

@@ -130,22 +130,21 @@ const SkillsSection: React.FC = () => {
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
+        <div className="flex items-center justify-between gap-4 mb-4 sm:mb-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center sm:text-left"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-white">
               Skills & Architecture
             </h2>
           </motion.div>
 
           {/* Carousel Arrows & Counter */}
-          <div className="flex items-center justify-center sm:justify-end gap-3">
-            <div className="text-xs font-mono text-slate-400 mr-1">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="text-[11px] sm:text-xs font-mono text-slate-400 mr-1">
               <span className="text-white font-semibold">{String(selectedIndex + 1).padStart(2, "0")}</span> /{" "}
               <span>{String(skillCategories.length).padStart(2, "0")}</span>
             </div>
@@ -153,39 +152,39 @@ const SkillsSection: React.FC = () => {
             <button
               onClick={scrollPrev}
               disabled={prevDisabled}
-              className={`p-2.5 rounded-full border transition-all ${
+              className={`p-2 sm:p-2.5 rounded-full border transition-all ${
                 prevDisabled
                   ? "border-white/5 text-slate-600 cursor-not-allowed bg-transparent"
                   : "border-white/15 text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
               }`}
               aria-label="Previous skill category"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
             <button
               onClick={scrollNext}
               disabled={nextDisabled}
-              className={`p-2.5 rounded-full border transition-all ${
+              className={`p-2 sm:p-2.5 rounded-full border transition-all ${
                 nextDisabled
                   ? "border-white/5 text-slate-600 cursor-not-allowed bg-transparent"
                   : "border-white/15 text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
               }`}
               aria-label="Next skill category"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </div>
         </div>
 
         {/* Interactive Category Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-6 justify-center sm:justify-start">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 justify-center sm:justify-start">
           {skillCategories.map((cat, idx) => {
             const isActive = selectedIndex === idx;
             return (
               <button
                 key={cat.id}
                 onClick={() => scrollTo(idx)}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all ${
                   isActive
                     ? "bg-white/[0.1] text-white border border-white/20 font-semibold shadow-sm"
                     : "bg-white/[0.02] text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] border border-white/5"
@@ -206,26 +205,26 @@ const SkillsSection: React.FC = () => {
                 key={category.id}
                 className="pl-4 min-w-0 flex-[0_0_100%]"
               >
-                <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 bg-[#0a0f1d]/90 shadow-xl flex flex-col justify-between space-y-6">
+                <div className="glass-panel p-4 sm:p-7 rounded-2xl border border-white/10 bg-[#0a0f1d]/90 shadow-xl flex flex-col justify-between space-y-4 sm:space-y-6">
                   
                   {/* Category Header */}
                   <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+                    <div className="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
+                      <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
                         {category.icon}
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white tracking-tight">
+                        <h3 className="text-sm sm:text-lg font-semibold text-white tracking-tight">
                           {category.title}
                         </h3>
-                        <p className="text-xs text-slate-400 mt-0.5">{category.description}</p>
+                        <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{category.description}</p>
                       </div>
                     </div>
 
                     {/* Architectural highlight pill */}
-                    <div className="px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300 flex items-center gap-2 mt-3">
-                      <Zap className="w-4 h-4 text-indigo-400 flex-shrink-0" />
-                      <span className="text-xs font-mono">{category.coreHighlight}</span>
+                    <div className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs text-slate-300 flex items-center gap-2 mt-2 sm:mt-3">
+                      <Zap className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
+                      <span className="font-mono">{category.coreHighlight}</span>
                     </div>
                   </div>
 

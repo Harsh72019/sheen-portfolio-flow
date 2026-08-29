@@ -131,19 +131,19 @@ const ContactSection: React.FC = () => {
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-6 sm:mb-10"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-white">
             Get in Touch
           </h2>
         </motion.div>
 
         {/* Contact Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Info Column (5 cols) */}
           <motion.div
@@ -153,8 +153,8 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             className="lg:col-span-5 space-y-4"
           >
-            <div className="glass-panel p-6 rounded-2xl border border-white/10 bg-[#090d18]/85 shadow-xl space-y-5">
-              <h3 className="text-base font-semibold text-white tracking-tight">
+            <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/10 bg-[#090d18]/85 shadow-xl space-y-4 sm:space-y-5">
+              <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
                 Direct Contact
               </h3>
 
@@ -253,7 +253,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             className="lg:col-span-7"
           >
-            <div className="glass-panel p-6 sm:p-7 rounded-2xl border border-white/10 bg-[#090d18]/90 shadow-xl">
+            <div className="glass-panel p-4 sm:p-7 rounded-2xl border border-white/10 bg-[#090d18]/90 shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="name" className="text-slate-300 text-xs font-medium uppercase tracking-wider mb-1.5 block">

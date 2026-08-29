@@ -51,7 +51,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           className="relative w-full max-w-2xl glass-panel bg-[#0a0e1a]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
         >
           {/* Header Image with Gradient */}
-          <div className="relative h-48 sm:h-56 w-full overflow-hidden flex-shrink-0 bg-slate-900">
+          <div className="relative h-40 sm:h-56 w-full overflow-hidden flex-shrink-0 bg-slate-900">
             <img
               src={project.image}
               alt={project.title}
@@ -62,25 +62,25 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full bg-black/60 hover:bg-black/80 text-slate-300 hover:text-white border border-white/20 transition-colors"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-full bg-black/60 hover:bg-black/80 text-slate-300 hover:text-white border border-white/20 transition-colors"
               aria-label="Close dialog"
             >
               <X className="w-4 h-4" />
             </button>
 
             {/* Title & Category Badge */}
-            <div className="absolute bottom-4 left-6 right-6">
-              <span className="inline-block px-2.5 py-0.5 text-[11px] font-mono font-medium rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-1.5">
+            <div className="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-6 sm:right-6">
+              <span className="inline-block px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-mono font-medium rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-1">
                 {project.category}
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <h2 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
                 {project.title}
               </h2>
             </div>
           </div>
 
           {/* Scrollable Content */}
-          <div className="p-6 space-y-5 overflow-y-auto flex-1">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-5 overflow-y-auto flex-1">
             {/* Overview */}
             <div>
               <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">

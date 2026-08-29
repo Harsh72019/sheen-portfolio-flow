@@ -266,22 +266,21 @@ const PortfolioSection: React.FC = () => {
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         
         {/* Header with Navigation Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex items-center justify-between gap-4 mb-4 sm:mb-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center md:text-left"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-white">
               Featured Work
             </h2>
           </motion.div>
 
           {/* Carousel Arrows & Counter */}
-          <div className="flex items-center justify-center md:justify-end gap-3">
-            <div className="text-xs font-mono text-slate-400 mr-2">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="text-[11px] sm:text-xs font-mono text-slate-400 mr-1">
               <span className="text-white font-semibold">{String(selectedIndex + 1).padStart(2, "0")}</span> /{" "}
               <span>{String(Math.max(1, scrollSnaps.length)).padStart(2, "0")}</span>
             </div>
@@ -289,40 +288,40 @@ const PortfolioSection: React.FC = () => {
             <button
               onClick={scrollPrev}
               disabled={prevBtnDisabled}
-              className={`p-2.5 rounded-full border transition-all ${
+              className={`p-2 sm:p-2.5 rounded-full border transition-all ${
                 prevBtnDisabled
                   ? "border-white/5 text-slate-600 cursor-not-allowed bg-transparent"
                   : "border-white/15 text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
               }`}
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
 
             <button
               onClick={scrollNext}
               disabled={nextBtnDisabled}
-              className={`p-2.5 rounded-full border transition-all ${
+              className={`p-2 sm:p-2.5 rounded-full border transition-all ${
                 nextBtnDisabled
                   ? "border-white/5 text-slate-600 cursor-not-allowed bg-transparent"
                   : "border-white/15 text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
               }`}
               aria-label="Next slide"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </div>
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-2 mb-8 justify-center md:justify-start">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-5 sm:mb-7">
           {filters.map((filter) => {
             const isActive = activeFilter === filter.value;
             return (
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                className={`relative px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-colors ${
                   isActive
                     ? "text-white bg-white/[0.1] border border-white/20 font-semibold"
                     : "text-slate-400 hover:text-slate-200 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5"
@@ -336,18 +335,18 @@ const PortfolioSection: React.FC = () => {
 
         {/* Interactive Embla Carousel */}
         <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-          <div className="flex -ml-5">
-            {filteredProjects.map((item, index) => (
+          <div className="flex -ml-4 sm:-ml-5">
+            {filteredProjects.map((item) => (
               <div
                 key={item.id}
-                className="pl-5 min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]"
+                className="pl-4 sm:pl-5 min-w-0 flex-[0_0_90%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]"
               >
                 <div
                   onClick={() => setSelectedProject(item)}
                   className="h-full group cursor-pointer glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col justify-between border border-white/10 shadow-xl bg-[#0b101d]/80 transition-all duration-300"
                 >
                   {/* Project Image & Category */}
-                  <div className="relative h-44 w-full overflow-hidden bg-slate-900">
+                  <div className="relative h-36 sm:h-44 w-full overflow-hidden bg-slate-900">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -355,14 +354,14 @@ const PortfolioSection: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b101d] via-[#0b101d]/40 to-transparent" />
                     
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-md bg-[#070a12]/80 text-slate-200 border border-white/10 backdrop-blur-md">
+                    <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
+                      <span className="px-2 py-0.5 text-[10px] font-mono font-medium rounded-md bg-[#070a12]/80 text-slate-200 border border-white/10 backdrop-blur-md">
                         {item.category}
                       </span>
                     </div>
 
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40 backdrop-blur-xs">
-                      <div className="px-3.5 py-1.5 rounded-full bg-indigo-600 text-white text-xs font-medium flex items-center gap-1.5 shadow-lg">
+                      <div className="px-3 py-1.5 rounded-full bg-indigo-600 text-white text-xs font-medium flex items-center gap-1.5 shadow-lg">
                         <Eye className="w-3.5 h-3.5" />
                         System Architecture
                       </div>
@@ -370,40 +369,40 @@ const PortfolioSection: React.FC = () => {
                   </div>
 
                   {/* Card Body */}
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
+                  <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
+                    <div className="space-y-1.5">
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-base font-semibold text-white group-hover:text-indigo-300 transition-colors">
+                        <h3 className="text-sm sm:text-base font-semibold text-white group-hover:text-indigo-300 transition-colors">
                           {item.title}
                         </h3>
-                        <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0 mt-0.5" />
+                        <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0 mt-0.5" />
                       </div>
 
-                      <p className="text-slate-400 text-xs line-clamp-3 leading-relaxed">
+                      <p className="text-slate-400 text-xs line-clamp-2 sm:line-clamp-3 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
 
                     {/* Key Metric Highlight */}
                     {item.fullDetails?.metrics?.[0] && (
-                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-center gap-2 text-[11px] font-mono text-emerald-400">
+                      <div className="p-1.5 sm:p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-emerald-400">
                         <TrendingUp className="w-3 h-3 flex-shrink-0" />
                         <span className="truncate">{item.fullDetails.metrics[0]}</span>
                       </div>
                     )}
 
                     {/* Tech Chips */}
-                    <div className="pt-2 border-t border-white/5 flex flex-wrap gap-1">
+                    <div className="pt-1.5 sm:pt-2 border-t border-white/5 flex flex-wrap gap-1">
                       {item.fullDetails?.techStack.slice(0, 3).map((tech, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/[0.03] text-slate-300 border border-white/5"
+                          className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono bg-white/[0.03] text-slate-300 border border-white/5"
                         >
                           {tech}
                         </span>
                       ))}
                       {(item.fullDetails?.techStack.length || 0) > 3 && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-white/[0.02]">
+                        <span className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-mono text-slate-400 bg-white/[0.02]">
                           +{(item.fullDetails?.techStack.length || 0) - 3}
                         </span>
                       )}
