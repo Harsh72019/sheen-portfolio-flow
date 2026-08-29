@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 222 47% 5%;
-    --foreground: 210 40% 98%;
+    --background: 160 30% 4%;
+    --foreground: 150 20% 98%;
 
-    --card: 222 40% 7%;
-    --card-foreground: 210 40% 98%;
+    --card: 160 25% 7%;
+    --card-foreground: 150 20% 98%;
 
-    --popover: 222 40% 7%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 160 25% 7%;
+    --popover-foreground: 150 20% 98%;
 
-    --primary: 224 76% 58%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 158 75% 45%;
+    --primary-foreground: 160 30% 4%;
 
-    --secondary: 220 25% 12%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 160 15% 12%;
+    --secondary-foreground: 150 20% 98%;
 
-    --muted: 220 20% 14%;
-    --muted-foreground: 215 16% 65%;
+    --muted: 160 12% 14%;
+    --muted-foreground: 155 10% 65%;
 
-    --accent: 226 70% 55%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 158 75% 45%;
+    --accent-foreground: 160 30% 4%;
 
     --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 150 20% 98%;
 
-    --border: 220 20% 16%;
-    --input: 220 20% 16%;
-    --ring: 224 76% 58%;
+    --border: 160 15% 15%;
+    --input: 160 15% 15%;
+    --ring: 158 75% 45%;
 
     --radius: 0.85rem;
   }
@@ -43,7 +43,7 @@
   }
 
   body {
-    background-color: #070a12;
+    background-color: #070b0e;
     color: #f1f5f9;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -53,40 +53,40 @@
     scroll-behavior: smooth;
   }
 
-  /* Custom Sleek Obsidian Scrollbar */
+  /* Custom Cyber Emerald Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #070a12;
+    background: #070b0e;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.2);
+    background: rgba(16, 185, 129, 0.25);
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(148, 163, 184, 0.4);
+    background: rgba(16, 185, 129, 0.45);
   }
 }
 
-/* Bespoke Glassmorphism and Refined Dark Surfaces */
+/* Cyber Emerald Obsidian Glassmorphism */
 .glass-panel {
-  background: rgba(13, 18, 30, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(12, 19, 25, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: rgba(15, 22, 36, 0.6);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(12, 19, 25, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65);
 }
 
 .glass-card-hover {
@@ -94,39 +94,27 @@
 }
 
 .glass-card-hover:hover {
-  background: rgba(20, 29, 48, 0.75);
-  border-color: rgba(99, 102, 241, 0.28);
-  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(99, 102, 241, 0.15);
+  background: rgba(16, 26, 34, 0.85);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(16, 185, 129, 0.2);
   transform: translateY(-3px);
 }
 
 .cyber-grid {
   background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(16, 185, 129, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.025) 1px, transparent 1px);
 }
 
 .text-gradient-silver {
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-indigo {
-  background: linear-gradient(135deg, #818cf8 0%, #6366f1 60%, #4f46e5 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #e0e7ff 0%, #93c5fd 50%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #d1fae5 45%, #34d399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-emerald {
-  background: linear-gradient(135deg, #a7f3d0 0%, #34d399 60%, #10b981 100%);
+  background: linear-gradient(135deg, #a7f3d0 0%, #10b981 50%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -5,8 +5,8 @@ const BackgroundEffects: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { scrollY } = useScroll();
 
-  const parallaxY1 = useTransform(scrollY, [0, 3000], [0, -120]);
-  const parallaxY2 = useTransform(scrollY, [0, 3000], [0, 100]);
+  const parallaxY1 = useTransform(scrollY, [0, 3000], [0, -100]);
+  const parallaxY2 = useTransform(scrollY, [0, 3000], [0, 90]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,8 +26,8 @@ const BackgroundEffects: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Subtle, calm particle nodes
-    const particleCount = Math.min(Math.floor((width * height) / 24000), 40);
+    // Cyber Emerald & Mint particle nodes
+    const particleCount = Math.min(Math.floor((width * height) / 24000), 38);
     const particles: Array<{
       x: number;
       y: number;
@@ -41,8 +41,8 @@ const BackgroundEffects: React.FC = () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
         radius: Math.random() * 1.2 + 0.6,
         alpha: Math.random() * 0.35 + 0.1,
       });
@@ -81,14 +81,14 @@ const BackgroundEffects: React.FC = () => {
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
         if (distMouse < mouse.radius) {
           const force = (mouse.radius - distMouse) / mouse.radius;
-          p1.x -= (dxMouse / distMouse) * force * 1.2;
-          p1.y -= (dyMouse / distMouse) * force * 1.2;
+          p1.x -= (dxMouse / distMouse) * force * 1.0;
+          p1.y -= (dyMouse / distMouse) * force * 1.0;
         }
 
         // Draw particle dot
         ctx.beginPath();
         ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#94a3b8';
+        ctx.fillStyle = '#10b981';
         ctx.globalAlpha = p1.alpha;
         ctx.fill();
 
@@ -99,13 +99,13 @@ const BackgroundEffects: React.FC = () => {
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 100) {
+          if (dist < 95) {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = '#64748b';
-            ctx.globalAlpha = (1 - dist / 100) * 0.12;
-            ctx.lineWidth = 0.6;
+            ctx.strokeStyle = '#059669';
+            ctx.globalAlpha = (1 - dist / 95) * 0.14;
+            ctx.lineWidth = 0.55;
             ctx.stroke();
           }
         }
@@ -127,21 +127,21 @@ const BackgroundEffects: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {/* Subtle Engineering Grid */}
-      <div className="absolute inset-0 cyber-grid opacity-25" />
+      <div className="absolute inset-0 cyber-grid opacity-30" />
 
-      {/* Ambient Depth Glow (Soft slate/indigo) */}
+      {/* Cyber Ambient Depth Glows (Emerald & Teal) */}
       <motion.div
         style={{ y: parallaxY1 }}
-        className="absolute -top-32 left-1/4 w-[600px] h-[450px] bg-indigo-900/10 rounded-full blur-[140px]"
+        className="absolute -top-32 left-1/4 w-[600px] h-[450px] bg-emerald-600/10 rounded-full blur-[160px]"
       />
 
       <motion.div
         style={{ y: parallaxY2 }}
-        className="absolute top-1/2 right-10 w-[500px] h-[400px] bg-slate-800/15 rounded-full blur-[150px]"
+        className="absolute top-1/2 right-10 w-[500px] h-[400px] bg-teal-700/10 rounded-full blur-[160px]"
       />
 
-      {/* Soft Vignette Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,transparent_0%,rgba(7,10,18,0.85)_100%)]" />
+      {/* Soft Dark Vignette Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,transparent_0%,rgba(7,11,14,0.92)_100%)]" />
 
       {/* Particle Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />

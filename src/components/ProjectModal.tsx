@@ -48,7 +48,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 15 }}
           transition={{ type: "spring", damping: 28, stiffness: 350 }}
-          className="relative w-full max-w-2xl glass-panel bg-[#0a0e1a]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
+          className="relative w-full max-w-2xl glass-panel bg-[#0c141c]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
         >
           {/* Header Image with Gradient */}
           <div className="relative h-40 sm:h-56 w-full overflow-hidden flex-shrink-0 bg-slate-900">
@@ -57,7 +57,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e1a] via-[#0a0e1a]/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c141c] via-[#0c141c]/50 to-transparent" />
             
             {/* Close Button */}
             <button
@@ -70,7 +70,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 
             {/* Title & Category Badge */}
             <div className="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-6 sm:right-6">
-              <span className="inline-block px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-mono font-medium rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-1">
+              <span className="inline-block px-2.5 py-0.5 text-[10px] sm:text-[11px] font-mono font-medium rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 mb-1 backdrop-blur-md">
                 {project.category}
               </span>
               <h2 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
@@ -84,7 +84,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             {/* Overview */}
             <div>
               <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 text-indigo-400" /> System Overview
+                <Zap className="w-3.5 h-3.5 text-emerald-400" /> System Overview
               </h3>
               <p className="text-slate-300 leading-relaxed text-sm">
                 {project.fullDetails?.overview || project.description}
@@ -95,7 +95,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             {project.fullDetails?.architecture && (
               <div>
                 <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-sky-400" /> Architectural Highlights
+                  <Layers className="w-3.5 h-3.5 text-emerald-400" /> Architectural Highlights
                 </h3>
                 <ul className="space-y-2">
                   {project.fullDetails.architecture.map((arch, idx) => (
@@ -118,7 +118,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                   {project.fullDetails.metrics.map((metric, idx) => (
                     <div
                       key={idx}
-                      className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-slate-200 flex items-center gap-2"
+                      className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-slate-200 flex items-center gap-2"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                       <span>{metric}</span>
@@ -155,9 +155,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 text-xs font-semibold shadow-md transition-all"
                   >
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-950" />
                     Live System
                   </a>
                 )}
@@ -166,7 +166,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-medium border border-white/10 transition-colors"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 text-xs font-medium border border-white/15 transition-colors"
                   >
                     <Github className="w-3.5 h-3.5" />
                     Repository

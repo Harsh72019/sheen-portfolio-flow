@@ -80,10 +80,10 @@ const ExperienceSection: React.FC = () => {
           {/* Static Track Line */}
           <div className="absolute left-3.5 sm:left-1/3 top-2 bottom-2 w-px bg-white/10" />
 
-          {/* Dynamic Laser Beam Fill */}
+          {/* Dynamic Emerald Laser Beam Fill */}
           <motion.div
             style={{ height: lineHeight }}
-            className="absolute left-3.5 sm:left-1/3 top-2 w-0.5 bg-indigo-500 origin-top z-10 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
+            className="absolute left-3.5 sm:left-1/3 top-2 w-0.5 bg-emerald-500 origin-top z-10 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
           />
 
           <div className="space-y-5 sm:space-y-8">
@@ -114,13 +114,13 @@ const ExperienceSection: React.FC = () => {
                 </div>
 
                 {/* Timeline Center Node Dot */}
-                <div className="absolute left-3.5 sm:left-1/3 -translate-x-1/2 top-2.5 w-5 h-5 rounded-full bg-[#070a12] border border-white/20 flex items-center justify-center z-20 shadow-md group-hover:border-indigo-400 transition-colors">
-                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                <div className="absolute left-3.5 sm:left-1/3 -translate-x-1/2 top-2.5 w-5 h-5 rounded-full bg-[#070b0e] border border-white/20 flex items-center justify-center z-20 shadow-md group-hover:border-emerald-400 transition-colors">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 </div>
 
                 {/* Right Column / Card */}
                 <div className="sm:col-span-8 sm:pl-4">
-                  <div className="glass-panel p-3.5 sm:p-5 rounded-xl border border-white/10 bg-[#090e1c]/80 shadow-md space-y-3 group-hover:border-white/20 transition-all">
+                  <div className="glass-panel p-3.5 sm:p-5 rounded-xl border border-white/10 bg-[#0c141c]/80 shadow-md space-y-3 group-hover:border-emerald-500/25 transition-all">
                     
                     {/* Role & Company Header */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
@@ -128,8 +128,8 @@ const ExperienceSection: React.FC = () => {
                         <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
                           {exp.role}
                         </h3>
-                        <div className="sm:hidden flex items-center gap-1.5 text-xs text-indigo-300 font-medium mt-0.5">
-                          <Building2 className="w-3 h-3 text-indigo-400" />
+                        <div className="sm:hidden flex items-center gap-1.5 text-xs text-emerald-300 font-medium mt-0.5">
+                          <Building2 className="w-3 h-3 text-emerald-400" />
                           <span>{exp.company}</span>
                         </div>
                       </div>

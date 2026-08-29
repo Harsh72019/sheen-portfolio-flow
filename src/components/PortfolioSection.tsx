@@ -321,9 +321,9 @@ const PortfolioSection: React.FC = () => {
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`flex-shrink-0 whitespace-nowrap px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-colors ${
+                className={`flex-shrink-0 whitespace-nowrap px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all ${
                   isActive
-                    ? "text-white bg-white/[0.1] border border-white/20 font-semibold"
+                    ? "text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 font-semibold shadow-sm"
                     : "text-slate-400 hover:text-slate-200 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5"
                 }`}
               >
@@ -343,7 +343,7 @@ const PortfolioSection: React.FC = () => {
               >
                 <div
                   onClick={() => setSelectedProject(item)}
-                  className="h-full group cursor-pointer glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col justify-between border border-white/10 shadow-xl bg-[#0b101d]/80 transition-all duration-300"
+                  className="h-full group cursor-pointer glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col justify-between border border-white/10 shadow-xl bg-[#0c141c]/80 transition-all duration-300"
                 >
                   {/* Project Image & Category */}
                   <div className="relative h-36 sm:h-44 w-full overflow-hidden bg-slate-900">
@@ -352,17 +352,17 @@ const PortfolioSection: React.FC = () => {
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b101d] via-[#0b101d]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c141c] via-[#0c141c]/40 to-transparent" />
                     
                     <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
-                      <span className="px-2 py-0.5 text-[10px] font-mono font-medium rounded-md bg-[#070a12]/80 text-slate-200 border border-white/10 backdrop-blur-md">
+                      <span className="px-2 py-0.5 text-[10px] font-mono font-medium rounded-md bg-[#070b0e]/80 text-slate-200 border border-white/10 backdrop-blur-md">
                         {item.category}
                       </span>
                     </div>
 
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40 backdrop-blur-xs">
-                      <div className="px-3 py-1.5 rounded-full bg-indigo-600 text-white text-xs font-medium flex items-center gap-1.5 shadow-lg">
-                        <Eye className="w-3.5 h-3.5" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/50 backdrop-blur-xs">
+                      <div className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 text-xs font-semibold flex items-center gap-1.5 shadow-xl">
+                        <Eye className="w-3.5 h-3.5 text-slate-950" />
                         System Architecture
                       </div>
                     </div>
@@ -372,10 +372,10 @@ const PortfolioSection: React.FC = () => {
                   <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4">
                     <div className="space-y-1.5">
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-sm sm:text-base font-semibold text-white group-hover:text-indigo-300 transition-colors">
+                        <h3 className="text-sm sm:text-base font-semibold text-white group-hover:text-emerald-300 transition-colors">
                           {item.title}
                         </h3>
-                        <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0 mt-0.5" />
+                        <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0 mt-0.5" />
                       </div>
 
                       <p className="text-slate-400 text-xs line-clamp-2 sm:line-clamp-3 leading-relaxed">
@@ -385,7 +385,7 @@ const PortfolioSection: React.FC = () => {
 
                     {/* Key Metric Highlight */}
                     {item.fullDetails?.metrics?.[0] && (
-                      <div className="p-1.5 sm:p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-emerald-400">
+                      <div className="p-1.5 sm:p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-emerald-400">
                         <TrendingUp className="w-3 h-3 flex-shrink-0" />
                         <span className="truncate">{item.fullDetails.metrics[0]}</span>
                       </div>
@@ -396,7 +396,7 @@ const PortfolioSection: React.FC = () => {
                       {item.fullDetails?.techStack.slice(0, 3).map((tech, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono bg-white/[0.03] text-slate-300 border border-white/5"
+                          className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono bg-white/[0.04] text-slate-300 border border-white/10"
                         >
                           {tech}
                         </span>
@@ -423,7 +423,7 @@ const PortfolioSection: React.FC = () => {
                 onClick={() => scrollTo(idx)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   idx === selectedIndex
-                    ? "w-6 bg-indigo-500"
+                    ? "w-6 bg-emerald-500"
                     : "w-1.5 bg-white/20 hover:bg-white/40"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}

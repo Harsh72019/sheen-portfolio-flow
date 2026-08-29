@@ -32,7 +32,7 @@ const skillCategories: SkillCategory[] = [
     id: "backend",
     title: "Distributed Systems & Backend Architecture",
     shortTitle: "Core Backend",
-    icon: <Server className="w-4 h-4 text-indigo-400" />,
+    icon: <Server className="w-4 h-4 text-amber-400" />,
     description: "Event-driven microservices, binary RPCs, and asynchronous queue architectures.",
     coreHighlight: "Engineered sub-second event pipelines and background job schedulers.",
     skills: [
@@ -48,7 +48,7 @@ const skillCategories: SkillCategory[] = [
     id: "database",
     title: "Databases & In-Memory Caching",
     shortTitle: "Data & Storage",
-    icon: <Database className="w-4 h-4 text-sky-400" />,
+    icon: <Database className="w-4 h-4 text-orange-400" />,
     description: "Sub-second indexing, ACID transactional integrity, and low-latency cache layers.",
     coreHighlight: "Tuned complex query execution from 10s down to <0.1s using GIN indexes.",
     skills: [
@@ -80,7 +80,7 @@ const skillCategories: SkillCategory[] = [
     id: "fullstack",
     title: "Full-Stack Architecture & Tooling",
     shortTitle: "Full-Stack",
-    icon: <Code2 className="w-4 h-4 text-amber-400" />,
+    icon: <Code2 className="w-4 h-4 text-amber-300" />,
     description: "End-to-end type safety, duplex real-time sockets, and modern interfaces.",
     coreHighlight: "Engineered responsive full-stack applications with sub-50ms WebSocket feeds.",
     skills: [
@@ -182,28 +182,27 @@ const SkillsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Interactive Category Tabs (Smooth Horizontal Scroll on mobile) */}
-        <div className="flex items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
+        {/* Category Tabs (Smooth Horizontal Scroll on mobile) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 mb-5 sm:mb-7 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           {skillCategories.map((cat, idx) => {
-            const isActive = selectedIndex === idx;
+            const isActive = idx === selectedIndex;
             return (
               <button
                 key={cat.id}
                 onClick={() => scrollTo(idx)}
-                className={`flex-shrink-0 whitespace-nowrap flex items-center gap-1.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all ${
+                className={`flex-shrink-0 whitespace-nowrap px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all flex items-center gap-1.5 ${
                   isActive
-                    ? "bg-white/[0.1] text-white border border-white/20 font-semibold shadow-sm"
-                    : "bg-white/[0.02] text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] border border-white/5"
+                    ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold shadow-sm"
+                    : "text-slate-400 hover:text-slate-200 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5"
                 }`}
               >
-                {cat.icon}
                 <span>{cat.shortTitle}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Single Item Carousel View (100% width) */}
+        {/* Embla Carousel for Skill Categories */}
         <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex -ml-4">
             {skillCategories.map((category) => (
@@ -211,7 +210,7 @@ const SkillsSection: React.FC = () => {
                 key={category.id}
                 className="pl-4 min-w-0 flex-[0_0_100%]"
               >
-                <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/10 bg-[#0a0f1d]/90 shadow-xl space-y-4">
+                <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/10 bg-[#0c141c]/90 shadow-xl space-y-4">
                   
                   {/* Category Header */}
                   <div className="space-y-2.5 pb-3 border-b border-white/5">
@@ -228,8 +227,8 @@ const SkillsSection: React.FC = () => {
                     </div>
 
                     {/* Architectural highlight pill */}
-                    <div className="px-3 py-1.5 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs text-slate-300 flex items-center gap-2">
-                      <Zap className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
+                    <div className="px-3 py-1.5 rounded-xl bg-emerald-500/5 border border-emerald-500/15 text-[11px] sm:text-xs text-emerald-200/90 flex items-center gap-2">
+                      <Zap className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                       <span className="font-mono">{category.coreHighlight}</span>
                     </div>
                   </div>
@@ -239,7 +238,7 @@ const SkillsSection: React.FC = () => {
                     {category.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors flex items-center justify-between gap-2"
+                        className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/25 transition-colors flex items-center justify-between gap-2"
                       >
                         <div className="min-w-0">
                           <div className="text-xs sm:text-sm font-semibold text-white truncate">
@@ -249,7 +248,7 @@ const SkillsSection: React.FC = () => {
                             {skill.useCase}
                           </div>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-300 border border-white/5 flex-shrink-0">
+                        <span className="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 flex-shrink-0">
                           {skill.tag}
                         </span>
                       </div>
@@ -271,7 +270,7 @@ const SkillsSection: React.FC = () => {
                 onClick={() => scrollTo(idx)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   idx === selectedIndex
-                    ? "w-6 bg-indigo-500"
+                    ? "w-6 bg-emerald-500"
                     : "w-1.5 bg-white/20 hover:bg-white/40"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}

@@ -72,8 +72,8 @@ const HeroSection: React.FC = () => {
                 transition={{ duration: 0.7, delay: 0.3 }}
                 className="text-base sm:text-xl lg:text-2xl font-medium text-slate-300 font-mono flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 pt-0.5"
               >
-                <span className="text-indigo-400">&gt;</span>
-                <span className="text-indigo-300 font-semibold truncate">
+                <span className="text-emerald-400">&gt;</span>
+                <span className="text-emerald-300 font-semibold truncate">
                   <Typewriter
                     words={[
                       "Senior Backend Engineer",
@@ -110,15 +110,15 @@ const HeroSection: React.FC = () => {
             >
               <a
                 href="#portfolio"
-                className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm transition-all hover:scale-[1.02] shadow-sm"
+                className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-semibold text-xs sm:text-sm transition-all hover:scale-[1.02] shadow-md shadow-emerald-500/20"
               >
                 <span>View Systems</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
               </a>
 
               <a
                 href="#experience"
-                className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.05] hover:bg-white/[0.08] text-slate-200 hover:text-white font-medium text-xs sm:text-sm border border-white/10 transition-all hover:scale-[1.02]"
+                className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/[0.05] hover:bg-white/[0.09] text-slate-200 hover:text-white font-medium text-xs sm:text-sm border border-white/10 transition-all hover:scale-[1.02]"
               >
                 <Briefcase className="w-3.5 h-3.5 text-slate-400" />
                 Experience
@@ -162,7 +162,7 @@ const HeroSection: React.FC = () => {
               ].map((domain) => (
                 <span
                   key={domain}
-                  className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-white/[0.04] border border-white/[0.07] text-slate-300 text-[10px] sm:text-[11px]"
+                  className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-white/[0.03] border border-white/[0.07] text-slate-300 text-[10px] sm:text-[11px]"
                 >
                   {domain}
                 </span>
@@ -181,23 +181,23 @@ const HeroSection: React.FC = () => {
             <div className="hidden sm:flex relative w-64 h-64 sm:w-72 sm:h-72 items-center justify-center">
               
               {/* Subtle back ambient glow */}
-              <div className="absolute inset-4 rounded-full bg-indigo-600/15 blur-2xl -z-10" />
+              <div className="absolute inset-4 rounded-full bg-emerald-500/15 blur-2xl -z-10" />
 
               {/* Circular Portrait Container */}
-              <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl group">
+              <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border border-white/15 bg-slate-900/60 shadow-2xl group">
                 <img
                   src={heroAvatar}
                   alt="Harsh Bali"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070a12]/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070b0e]/60 via-transparent to-transparent" />
               </div>
 
               {/* Floating Latency Metric Badge */}
               <motion.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-3 left-0 sm:-left-4 z-20 px-3 py-2 rounded-xl glass-panel bg-[#0d1322]/95 border border-white/10 shadow-xl flex items-center gap-2"
+                className="absolute -bottom-3 left-0 sm:-left-4 z-20 px-3 py-2 rounded-xl glass-panel bg-[#0c141c]/95 border border-white/10 shadow-xl flex items-center gap-2"
               >
                 <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs">
                   ⚡
@@ -212,9 +212,9 @@ const HeroSection: React.FC = () => {
               <motion.div
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-2 -right-2 sm:-right-4 z-20 px-3 py-2 rounded-xl glass-panel bg-[#0d1322]/95 border border-white/10 shadow-xl flex items-center gap-2"
+                className="absolute -top-2 -right-2 sm:-right-4 z-20 px-3 py-2 rounded-xl glass-panel bg-[#0c141c]/95 border border-white/10 shadow-xl flex items-center gap-2"
               >
-                <div className="w-6 h-6 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xs">
+                <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-300 flex items-center justify-center text-xs">
                   🚀
                 </div>
                 <div>
@@ -229,7 +229,7 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="w-full max-w-sm glass-card rounded-xl sm:rounded-2xl p-3.5 sm:p-4 border border-white/10 font-mono text-xs shadow-xl bg-[#090d18]/90"
+              className="w-full max-w-sm glass-card rounded-xl sm:rounded-2xl p-3.5 sm:p-4 border border-white/10 font-mono text-xs shadow-xl bg-[#0a1016]/90"
             >
               {/* Terminal Window Header */}
               <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
@@ -268,16 +268,16 @@ const HeroSection: React.FC = () => {
                 <div className="text-slate-300 space-y-1 text-[10px] sm:text-[11px] leading-relaxed">
                   <div className="text-slate-500">// Distributed Engine Config</div>
                   <div>
-                    <span className="text-indigo-300">"topology"</span>: <span className="text-slate-100">"event-driven-microservices"</span>,
+                    <span className="text-emerald-300">"topology"</span>: <span className="text-slate-100">"event-driven-microservices"</span>,
                   </div>
                   <div>
-                    <span className="text-indigo-300">"queryLatency"</span>: <span className="text-emerald-400">"sub-100ms P99"</span>,
+                    <span className="text-emerald-300">"queryLatency"</span>: <span className="text-emerald-400">"sub-100ms P99"</span>,
                   </div>
                   <div>
-                    <span className="text-indigo-300">"concurrency"</span>: <span className="text-slate-100">"multi-worker-cluster"</span>,
+                    <span className="text-emerald-300">"concurrency"</span>: <span className="text-slate-100">"multi-worker-cluster"</span>,
                   </div>
                   <div>
-                    <span className="text-indigo-300">"resilience"</span>: <span className="text-emerald-400">"zero-loss FIFO guarantee"</span>
+                    <span className="text-emerald-300">"resilience"</span>: <span className="text-emerald-400">"zero-loss FIFO guarantee"</span>
                   </div>
                 </div>
               )}
@@ -287,7 +287,7 @@ const HeroSection: React.FC = () => {
                   <div className="text-emerald-400">● Cache Cluster: Healthy (0.2ms latency)</div>
                   <div className="text-emerald-400">● Stream Ingestion: 0% message lag</div>
                   <div className="text-slate-300">● Process RSS: 128MB normal footprint</div>
-                  <div className="text-indigo-300">● Worker Concurrency: 8 active executors</div>
+                  <div className="text-teal-300">● Worker Concurrency: 8 active executors</div>
                 </div>
               )}
             </motion.div>

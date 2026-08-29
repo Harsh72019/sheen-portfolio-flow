@@ -253,7 +253,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             className="w-full lg:col-span-7 max-w-xl mx-auto lg:max-w-none"
           >
-            <div className="glass-panel p-4 sm:p-7 rounded-2xl border border-white/10 bg-[#090d18]/90 shadow-xl">
+            <div className="glass-panel p-4 sm:p-7 rounded-2xl border border-white/10 bg-[#0c141c]/90 shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="name" className="text-slate-300 text-xs font-medium uppercase tracking-wider mb-1.5 block">
@@ -266,7 +266,7 @@ const ContactSection: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your Name"
-                    className="bg-slate-900/60 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-indigo-500 h-10 text-xs sm:text-sm"
+                    className="bg-slate-900/60 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-emerald-500/50 h-10 text-xs sm:text-sm"
                     required
                   />
                 </div>
@@ -282,7 +282,7 @@ const ContactSection: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="name@company.com"
-                    className="bg-slate-900/60 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-indigo-500 h-10 text-xs sm:text-sm"
+                    className="bg-slate-900/60 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-emerald-500/50 h-10 text-xs sm:text-sm"
                     required
                   />
                 </div>
@@ -298,7 +298,7 @@ const ContactSection: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="Project details, role inquiries, or technical discussion..."
                     rows={4}
-                    className="bg-slate-900/60 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-indigo-500 text-xs sm:text-sm resize-none"
+                    className="bg-slate-900/60 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-emerald-500/50 text-xs sm:text-sm resize-none"
                     required
                   />
                 </div>
@@ -306,16 +306,16 @@ const ContactSection: React.FC = () => {
                 <Button
                   type="submit"
                   disabled={isSending}
-                  className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm rounded-xl transition-colors shadow-sm h-auto flex items-center justify-center gap-2"
+                  className="w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-semibold text-xs sm:text-sm rounded-xl transition-all shadow-md shadow-emerald-500/20 h-auto flex items-center justify-center gap-2"
                 >
                   {isSending ? (
                     <>
-                      <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span className="w-3.5 h-3.5 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
                       <span>Sending Message...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="w-3.5 h-3.5" />
+                      <Send className="w-3.5 h-3.5 text-slate-950" />
                       <span>Send Message</span>
                     </>
                   )}
