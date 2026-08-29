@@ -262,7 +262,7 @@ const PortfolioSection: React.FC = () => {
   }, [activeFilter, emblaApi]);
 
   return (
-    <section className="py-20 relative overflow-hidden" id="portfolio">
+    <section className="py-10 sm:py-16 relative overflow-hidden" id="portfolio">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         
         {/* Header with Navigation Controls */}
@@ -313,15 +313,15 @@ const PortfolioSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-5 sm:mb-7">
+        {/* Category Filters (Smooth Horizontal Scroll on mobile, Wrap on desktop) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 mb-5 sm:mb-7 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           {filters.map((filter) => {
             const isActive = activeFilter === filter.value;
             return (
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`relative px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-colors ${
+                className={`flex-shrink-0 whitespace-nowrap px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-colors ${
                   isActive
                     ? "text-white bg-white/[0.1] border border-white/20 font-semibold"
                     : "text-slate-400 hover:text-slate-200 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5"

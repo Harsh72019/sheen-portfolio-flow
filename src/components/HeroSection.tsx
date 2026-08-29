@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="min-h-[85vh] sm:min-h-screen pt-24 sm:pt-32 pb-14 sm:pb-20 relative flex items-center justify-center overflow-hidden" id="hero">
+    <section className="min-h-[80vh] sm:min-h-screen pt-20 sm:pt-28 pb-10 sm:pb-14 relative flex items-center justify-center overflow-hidden" id="hero">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           

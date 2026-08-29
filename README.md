@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# Harsh Bali — Senior Backend & Distributed Systems Portfolio
 
-## Project info
+A bespoke, high-performance developer portfolio engineered to showcase distributed systems architecture, event-driven pipelines, low-latency APIs, and database performance optimizations.
 
-**URL**: https://lovable.dev/projects/8b277788-080b-4c1f-9878-413f18e054b0
+Designed with an **Obsidian Slate & Steel** theme, subtle constellation canvas lighting, interactive carousels, and a dynamic laser scroll tracking timeline.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ⚡ Key Highlights
 
-**Use Lovable**
+- **Hero & Live Telemetry**: Dynamic typewriter, interactive architecture config / telemetry console, and one-click contact actions.
+- **Interactive Projects Carousel**: Embla carousel featuring 7 distributed systems & backend architectures with category filtering (`Distributed Backend`, `Real-Time & Sockets`, `FinTech & Trading`, `AI & Embeddings`).
+- **Architectural Deep-Dive Modal**: In-depth breakdowns of system architectures, key metrics, and technology stacks.
+- **Compact Work Experience Timeline**: Split vertical timeline with smooth spring-physics laser scroll tracking and verified metrics (e.g. *10s → <0.1s (-99%) latency reduction*).
+- **Single-Card Skills Matrix Carousel**: Focused single-card skill panels with interactive category tabs.
+- **Get In Touch & Direct Contact**: EmailJS-powered contact form with canvas confetti celebrations and quick resume download.
+- **Full Responsive Optimization**: Designed and calibrated for mobile devices, tablets, and ultra-wide displays.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8b277788-080b-4c1f-9878-413f18e054b0) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+### Core Framework & UI
+- **Framework**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite 5](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + Custom Glassmorphism & Micro-borders
+- **Animation & Physics**: [Framer Motion](https://www.framer.com/motion/)
+- **Carousels**: [Embla Carousel React](https://www.embla-carousel.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Form Handling & Feedback**: [EmailJS](https://www.emailjs.com/) & [Canvas Confetti](https://www.npmjs.com/package/canvas-confetti)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
+- Node.js (`v18.0.0` or higher recommended)
+- npm (`v9.0.0` or higher)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Harsh72019/sheen-portfolio-flow.git
+   cd sheen-portfolio-flow
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+3. **Start the local development server**:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:8080](http://localhost:8080) in your browser.
+
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+sheen-portfolio-flow/
+├── public/
+│   ├── HARSH_RESUME.pdf          # Resume document
+│   └── HARSH_SEP_RESUME.pdf
+├── src/
+│   ├── assets/
+│   │   ├── avatar.png            # Profile portrait
+│   │   └── HARSH_SEP_RESUME.pdf  # Resume asset
+│   ├── components/
+│   │   ├── BackgroundEffects.tsx # Subtle constellation canvas & ambient lights
+│   │   ├── ContactSection.tsx    # Contact form & EmailJS integration
+│   │   ├── ExperienceSection.tsx # Laser timeline & work history
+│   │   ├── Footer.tsx            # Minimalist developer footer
+│   │   ├── HeroSection.tsx       # Headline, typewriter & telemetry terminal
+│   │   ├── Navbar.tsx            # Sticky glass navbar & laser scroll progress
+│   │   ├── PortfolioSection.tsx  # Interactive systems carousel & category filters
+│   │   ├── ProjectModal.tsx      # Architecture deep-dive modal
+│   │   └── SkillsSection.tsx     # Single-panel skills carousel
+│   ├── pages/
+│   │   ├── Index.tsx             # Main landing page
+│   │   └── NotFound.tsx          # 404 page
+│   ├── index.css                 # Obsidian slate theme tokens & glass utilities
+│   ├── main.tsx                  # React DOM entry point
+│   └── App.tsx                   # App routes & toast provider
+├── package.json
+└── vite.config.ts
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📬 Contact & Socials
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8b277788-080b-4c1f-9878-413f18e054b0) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- **Developer**: Harsh Bali
+- **Email**: [harshbali374@gmail.com](mailto:harshbali374@gmail.com)
+- **LinkedIn**: [linkedin.com/in/harsh-bali-423987228](https://www.linkedin.com/in/harsh-bali-423987228/)
+- **GitHub**: [github.com/Harsh72019](https://github.com/Harsh72019)

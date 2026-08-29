@@ -58,7 +58,7 @@ const ExperienceSection: React.FC = () => {
   });
 
   return (
-    <section className="py-14 sm:py-16 relative overflow-hidden" id="experience" ref={containerRef}>
+    <section className="py-10 sm:py-16 relative overflow-hidden" id="experience" ref={containerRef}>
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         
         {/* Header */}
@@ -67,9 +67,9 @@ const ExperienceSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-8 sm:mb-10"
+          className="text-center mb-6 sm:mb-10"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-white">
             Work Experience
           </h2>
         </motion.div>
@@ -86,7 +86,7 @@ const ExperienceSection: React.FC = () => {
             className="absolute left-3.5 sm:left-1/3 top-2 w-0.5 bg-indigo-500 origin-top z-10 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
           />
 
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-5 sm:space-y-8">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.company}
@@ -114,40 +114,33 @@ const ExperienceSection: React.FC = () => {
                 </div>
 
                 {/* Timeline Center Node Dot */}
-                <div className="absolute left-3.5 sm:left-1/3 -translate-x-1/2 top-1.5 w-5 h-5 rounded-full bg-[#070a12] border border-white/20 flex items-center justify-center z-20 shadow-md group-hover:border-indigo-400 transition-colors">
+                <div className="absolute left-3.5 sm:left-1/3 -translate-x-1/2 top-2.5 w-5 h-5 rounded-full bg-[#070a12] border border-white/20 flex items-center justify-center z-20 shadow-md group-hover:border-indigo-400 transition-colors">
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                 </div>
 
-                {/* Right Column / Mobile Card */}
-                <div className="sm:col-span-8 sm:pl-4 space-y-2">
-                  
-                  {/* Mobile Header Row (< sm only) */}
-                  <div className="sm:hidden flex flex-wrap items-center justify-between gap-1.5 pb-0.5">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-white">
-                      <Building2 className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>{exp.company}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/[0.04] text-slate-300 border border-white/10">
-                        {exp.period}
-                      </span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        {exp.metrics.split(" ")[0]}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="glass-panel p-3.5 sm:p-5 rounded-xl border border-white/10 bg-[#090e1c]/80 shadow-md space-y-2.5 sm:space-y-3 group-hover:border-white/20 transition-all">
+                {/* Right Column / Card */}
+                <div className="sm:col-span-8 sm:pl-4">
+                  <div className="glass-panel p-3.5 sm:p-5 rounded-xl border border-white/10 bg-[#090e1c]/80 shadow-md space-y-3 group-hover:border-white/20 transition-all">
                     
-                    {/* Role Title */}
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className="text-xs sm:text-base font-semibold text-white tracking-tight">
-                        {exp.role}
-                      </h3>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-400 border border-white/5">
-                        {exp.type}
-                      </span>
+                    {/* Role & Company Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                      <div>
+                        <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
+                          {exp.role}
+                        </h3>
+                        <div className="sm:hidden flex items-center gap-1.5 text-xs text-indigo-300 font-medium mt-0.5">
+                          <Building2 className="w-3 h-3 text-indigo-400" />
+                          <span>{exp.company}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 pt-0.5 sm:pt-0">
+                        <span className="sm:hidden text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300 border border-white/10">
+                          {exp.period}
+                        </span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-400 border border-white/5">
+                          {exp.type}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Achievements bullets */}
@@ -160,8 +153,14 @@ const ExperienceSection: React.FC = () => {
                       ))}
                     </ul>
 
+                    {/* Key Impact Metric (Fully visible on all viewports) */}
+                    <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/15 flex items-center gap-2 text-xs font-mono text-emerald-400">
+                      <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span className="font-medium text-[11px] sm:text-xs">Impact: {exp.metrics}</span>
+                    </div>
+
                     {/* Micro Tech Stack Chips */}
-                    <div className="flex flex-wrap gap-1 pt-1.5 border-t border-white/5">
+                    <div className="flex flex-wrap gap-1 pt-1 border-t border-white/5">
                       {exp.skills.map((skill) => (
                         <span
                           key={skill}

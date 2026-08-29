@@ -8,14 +8,13 @@ import {
   ChevronLeft,
   ChevronRight,
   Zap,
-  ArrowRight,
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
 interface SkillItem {
   name: string;
-  level: number;
   useCase: string;
+  tag: string;
 }
 
 interface SkillCategory {
@@ -37,11 +36,12 @@ const skillCategories: SkillCategory[] = [
     description: "Event-driven microservices, binary RPCs, and asynchronous queue architectures.",
     coreHighlight: "Engineered sub-second event pipelines and background job schedulers.",
     skills: [
-      { name: "Node.js (Cluster & Async I/O)", level: 95, useCase: "High-concurrency microservices & non-blocking I/O" },
-      { name: "gRPC & Protocol Buffers", level: 86, useCase: "Low-latency binary inter-service RPC communication" },
-      { name: "Apache Kafka", level: 88, useCase: "Partitioned event streaming & decoupled message brokers" },
-      { name: "BullMQ Job Queues", level: 90, useCase: "Priority queues, delayed scheduling & auto-retry pipelines" },
-      { name: "Express.js / REST APIs", level: 95, useCase: "Robust middleware chains, validation & API security" },
+      { name: "Node.js (Cluster & Async I/O)", useCase: "High-concurrency microservices & non-blocking I/O", tag: "Core Stack" },
+      { name: "gRPC & Protocol Buffers", useCase: "Low-latency binary inter-service RPC communication", tag: "Microservices" },
+      { name: "Apache Kafka", useCase: "Partitioned event streaming & decoupled message brokers", tag: "Streaming" },
+      { name: "BullMQ Job Queues", useCase: "Priority queues, delayed scheduling & auto-retries", tag: "Distributed" },
+      { name: "Express.js / REST APIs", useCase: "Robust middleware chains, validation & API security", tag: "Production" },
+      { name: "System Design & Fan-Out", useCase: "Scalable feed generation & asynchronous pipelines", tag: "Architecture" },
     ],
   },
   {
@@ -52,10 +52,12 @@ const skillCategories: SkillCategory[] = [
     description: "Sub-second indexing, ACID transactional integrity, and low-latency cache layers.",
     coreHighlight: "Tuned complex query execution from 10s down to <0.1s using GIN indexes.",
     skills: [
-      { name: "PostgreSQL (GIN Indexes & Tuning)", level: 92, useCase: "Query plan optimization & fast pattern matching" },
-      { name: "Redis (In-Memory & Pub/Sub)", level: 90, useCase: "Sub-millisecond caching & real-time session sync" },
-      { name: "MongoDB & Aggregation", level: 88, useCase: "Time-series data, document schemas & indexing" },
-      { name: "MySQL (Sequelize / Prisma)", level: 85, useCase: "Relational normalization, transactions & migrations" },
+      { name: "PostgreSQL (GIN Indexes & Tuning)", useCase: "Query plan optimization & fast pattern matching", tag: "Query Tuning" },
+      { name: "Redis (In-Memory & Pub/Sub)", useCase: "Sub-millisecond caching & real-time session sync", tag: "Low Latency" },
+      { name: "MongoDB & Aggregation", useCase: "Time-series data, document schemas & indexing", tag: "NoSQL" },
+      { name: "MySQL (Sequelize / Prisma)", useCase: "Relational normalization, transactions & migrations", tag: "ACID" },
+      { name: "Bloom Filters & Indexing", useCase: "Probabilistic deduplication & sub-ms lookups", tag: "Optimization" },
+      { name: "Data Pipeline ETL", useCase: "Automated media transcoding & cloud storage sync", tag: "ETL" },
     ],
   },
   {
@@ -66,10 +68,12 @@ const skillCategories: SkillCategory[] = [
     description: "Containerization, cloud compute orchestration, and real-time observability.",
     coreHighlight: "Containerized 10+ services for seamless production deployments.",
     skills: [
-      { name: "Docker & Containerization", level: 85, useCase: "Multi-stage builds & environment parity" },
-      { name: "AWS (ECS, EC2, S3)", level: 84, useCase: "Container tasks, cloud storage & compute instances" },
-      { name: "AWS CloudWatch & Logs", level: 86, useCase: "Telemetry monitoring, alarms & log insights" },
-      { name: "CI/CD & Deployment Pipelines", level: 82, useCase: "Automated test suites & continuous delivery" },
+      { name: "Docker & Containerization", useCase: "Multi-stage builds & environment parity", tag: "Containers" },
+      { name: "Kubernetes (K8s)", useCase: "Automated cluster scaling & pod orchestration", tag: "Orchestration" },
+      { name: "AWS (ECS, EC2, S3)", useCase: "Container tasks, cloud storage & compute instances", tag: "Cloud" },
+      { name: "AWS CloudWatch & Logs", useCase: "Telemetry monitoring, alarms & log insights", tag: "Telemetry" },
+      { name: "CI/CD & Deployment", useCase: "Automated test suites & continuous delivery", tag: "DevOps" },
+      { name: "Distributed Rate Limiting", useCase: "Token bucket & sliding window rate throttling", tag: "Security" },
     ],
   },
   {
@@ -80,10 +84,12 @@ const skillCategories: SkillCategory[] = [
     description: "End-to-end type safety, duplex real-time sockets, and modern interfaces.",
     coreHighlight: "Engineered responsive full-stack applications with sub-50ms WebSocket feeds.",
     skills: [
-      { name: "TypeScript", level: 86, useCase: "Strict type safety across API contracts & schemas" },
-      { name: "WebSockets & Socket.IO", level: 92, useCase: "Full-duplex client-server real-time feeds" },
-      { name: "React.js & State Management", level: 80, useCase: "Performant responsive single-page interfaces" },
-      { name: "TailwindCSS & Component Systems", level: 85, useCase: "Modular, accessible, responsive design systems" },
+      { name: "TypeScript", useCase: "Strict type safety across API contracts & schemas", tag: "Type Safety" },
+      { name: "WebSockets & Socket.IO", useCase: "Full-duplex client-server real-time feeds", tag: "Real-Time" },
+      { name: "React.js & Modern UI", useCase: "Performant responsive single-page interfaces", tag: "Frontend" },
+      { name: "TailwindCSS & Design Systems", useCase: "Modular, accessible, responsive design systems", tag: "Design" },
+      { name: "Vector Search & Embeddings", useCase: "Cosine similarity & semantic query matching", tag: "AI Search" },
+      { name: "Git & Linux CLI", useCase: "Version control, shell scripting & server management", tag: "Tooling" },
     ],
   },
 ];
@@ -126,7 +132,7 @@ const SkillsSection: React.FC = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-20 relative overflow-hidden" id="skills">
+    <section className="py-10 sm:py-16 relative overflow-hidden" id="skills">
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         
         {/* Header */}
@@ -176,15 +182,15 @@ const SkillsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Interactive Category Tabs */}
-        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 justify-center sm:justify-start">
+        {/* Interactive Category Tabs (Smooth Horizontal Scroll on mobile) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           {skillCategories.map((cat, idx) => {
             const isActive = selectedIndex === idx;
             return (
               <button
                 key={cat.id}
                 onClick={() => scrollTo(idx)}
-                className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all ${
+                className={`flex-shrink-0 whitespace-nowrap flex items-center gap-1.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all ${
                   isActive
                     ? "bg-white/[0.1] text-white border border-white/20 font-semibold shadow-sm"
                     : "bg-white/[0.02] text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] border border-white/5"
@@ -205,16 +211,16 @@ const SkillsSection: React.FC = () => {
                 key={category.id}
                 className="pl-4 min-w-0 flex-[0_0_100%]"
               >
-                <div className="glass-panel p-4 sm:p-7 rounded-2xl border border-white/10 bg-[#0a0f1d]/90 shadow-xl flex flex-col justify-between space-y-4 sm:space-y-6">
+                <div className="glass-panel p-4 sm:p-6 rounded-2xl border border-white/10 bg-[#0a0f1d]/90 shadow-xl space-y-4">
                   
                   {/* Category Header */}
-                  <div>
-                    <div className="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
+                  <div className="space-y-2.5 pb-3 border-b border-white/5">
+                    <div className="flex items-center gap-2.5 sm:gap-3">
                       <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
                         {category.icon}
                       </div>
                       <div>
-                        <h3 className="text-sm sm:text-lg font-semibold text-white tracking-tight">
+                        <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
                           {category.title}
                         </h3>
                         <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{category.description}</p>
@@ -222,32 +228,30 @@ const SkillsSection: React.FC = () => {
                     </div>
 
                     {/* Architectural highlight pill */}
-                    <div className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs text-slate-300 flex items-center gap-2 mt-2 sm:mt-3">
+                    <div className="px-3 py-1.5 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] sm:text-xs text-slate-300 flex items-center gap-2">
                       <Zap className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
                       <span className="font-mono">{category.coreHighlight}</span>
                     </div>
                   </div>
 
-                  {/* Skills Progress List */}
-                  <div className="space-y-4 pt-1">
+                  {/* Symmetrical Grid of Skill Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     {category.skills.map((skill) => (
-                      <div key={skill.name} className="space-y-1.5 group">
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-slate-200 font-medium">
+                      <div
+                        key={skill.name}
+                        className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors flex items-center justify-between gap-2"
+                      >
+                        <div className="min-w-0">
+                          <div className="text-xs sm:text-sm font-semibold text-white truncate">
                             {skill.name}
-                          </span>
-                          <span className="text-slate-400 text-[11px] font-mono">
+                          </div>
+                          <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono mt-0.5 leading-snug">
                             {skill.useCase}
-                          </span>
+                          </div>
                         </div>
-
-                        {/* Progress Bar */}
-                        <div className="w-full bg-slate-800/60 rounded-full h-1.5 overflow-hidden">
-                          <div
-                            style={{ width: `${skill.level}%` }}
-                            className="h-full rounded-full bg-slate-400 group-hover:bg-indigo-400 transition-colors duration-300"
-                          />
-                        </div>
+                        <span className="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-300 border border-white/5 flex-shrink-0">
+                          {skill.tag}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -260,7 +264,7 @@ const SkillsSection: React.FC = () => {
 
         {/* Carousel Pagination Dots */}
         {scrollSnaps.length > 1 && (
-          <div className="flex items-center justify-center gap-1.5 mt-6">
+          <div className="flex items-center justify-center gap-1.5 mt-5 sm:mt-6">
             {scrollSnaps.map((_, idx) => (
               <button
                 key={idx}

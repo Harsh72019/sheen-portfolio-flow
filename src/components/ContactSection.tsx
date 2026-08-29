@@ -126,7 +126,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden" id="contact">
+    <section className="py-10 sm:py-16 relative overflow-hidden" id="contact">
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         
         {/* Section Header */}
