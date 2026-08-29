@@ -4,7 +4,6 @@ import {
   Menu,
   X,
   FileDown,
-  Sparkles,
   Github,
   Linkedin,
   Mail,
@@ -62,7 +61,7 @@ const Navbar: React.FC = () => {
     <>
       {/* Top Laser Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-indigo-500 via-cyan-400 to-purple-500 origin-left z-[60] shadow-[0_0_12px_rgba(56,189,248,0.8)]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 via-sky-400 to-indigo-400 origin-left z-[60]"
         style={{ scaleX }}
       />
 
@@ -72,35 +71,29 @@ const Navbar: React.FC = () => {
         }`}
       >
         <div className="container mx-auto px-4 max-w-6xl">
-          <nav className="glass-panel px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 backdrop-blur-xl bg-[#090e1c]/70">
+          <nav className="glass-panel px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 backdrop-blur-xl bg-[#090d18]/85">
             {/* Brand Logo */}
             <a
               href="#hero"
               className="flex items-center gap-2 group cursor-pointer"
             >
-              <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-600 via-purple-500 to-cyan-400 flex items-center justify-center text-white font-mono font-bold text-sm shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform">
-                HB
+              <div className="px-2.5 py-1 rounded-lg bg-white/[0.06] border border-white/10 text-slate-200 font-mono font-semibold text-xs group-hover:border-indigo-400/50 group-hover:text-white transition-colors">
+                HB<span className="text-indigo-400">.dev</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-white font-bold text-sm sm:text-base tracking-tight group-hover:text-indigo-400 transition-colors">
-                  Harsh Bali
-                </span>
-                <span className="text-[10px] text-cyan-400 font-mono -mt-1 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping inline-block" />
-                  Senior Backend
-                </span>
-              </div>
+              <span className="text-xs text-slate-400 font-mono hidden sm:inline-block">
+                / Backend Systems
+              </span>
             </a>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center gap-1 bg-white/[0.04] p-1 rounded-full border border-white/5">
+            <div className="hidden md:flex items-center gap-1 bg-white/[0.03] p-1 rounded-full border border-white/5">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`relative px-4 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-colors ${
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${
                       isActive
                         ? "text-white"
                         : "text-slate-400 hover:text-slate-200"
@@ -109,7 +102,7 @@ const Navbar: React.FC = () => {
                     {isActive && (
                       <motion.div
                         layoutId="activeNavIndicator"
-                        className="absolute inset-0 bg-gradient-to-r from-indigo-500/80 to-purple-600/80 rounded-full -z-10 shadow-lg shadow-indigo-500/30"
+                        className="absolute inset-0 bg-white/[0.08] border border-white/10 rounded-full -z-10"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -124,24 +117,24 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Right CTAs */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2.5">
               <a
                 href={resumePdf}
                 download="Harsh_Bali_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-all hover:scale-105"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] rounded-full border border-white/10 transition-colors"
               >
-                <FileDown className="w-3.5 h-3.5 text-indigo-400" />
+                <FileDown className="w-3.5 h-3.5 text-slate-400" />
                 Resume
               </a>
 
               <a
                 href="#contact"
-                className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:to-purple-500 rounded-full shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all hover:scale-105"
+                className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-colors shadow-sm"
               >
                 <Send className="w-3.5 h-3.5" />
-                Let's Talk
+                Get in Touch
               </a>
             </div>
 
@@ -152,9 +145,9 @@ const Navbar: React.FC = () => {
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Menu className="w-4 h-4" />
               )}
             </button>
           </nav>
@@ -169,7 +162,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-20 z-40 md:hidden p-5 rounded-2xl glass-panel border border-white/15 bg-[#090e1c]/95 backdrop-blur-2xl shadow-2xl space-y-4"
+            className="fixed inset-x-4 top-20 z-40 md:hidden p-5 rounded-2xl glass-panel border border-white/15 bg-[#090d18]/95 backdrop-blur-2xl shadow-2xl space-y-4"
           >
             <div className="flex flex-col space-y-1">
               {navItems.map((item) => (
@@ -179,7 +172,7 @@ const Navbar: React.FC = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                     activeSection === item.href.substring(1)
-                      ? "bg-indigo-600/30 text-indigo-300 font-semibold border border-indigo-500/30"
+                      ? "bg-white/10 text-white font-semibold"
                       : "text-slate-300 hover:bg-white/5 hover:text-white"
                   }`}
                 >
@@ -195,19 +188,19 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-slate-200 bg-white/10 rounded-xl border border-white/10"
+                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-slate-200 bg-white/5 rounded-xl border border-white/10"
               >
-                <FileDown className="w-4 h-4 text-indigo-400" />
+                <FileDown className="w-4 h-4 text-slate-400" />
                 Download Resume
               </a>
 
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-lg shadow-indigo-600/30"
+                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-white bg-indigo-600 rounded-xl"
               >
                 <Send className="w-4 h-4" />
-                Let's Talk
+                Get in Touch
               </a>
             </div>
 

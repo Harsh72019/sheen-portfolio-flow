@@ -13,7 +13,7 @@ export interface ProjectData {
     architecture: string[];
     metrics: string[];
     techStack: string[];
-    challenges: string;
+    challenges?: string;
   };
   image: string;
   color: string;
@@ -39,86 +39,67 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 bg-black/85 backdrop-blur-sm"
         />
 
         {/* Modal Dialog */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 20 }}
+          initial={{ opacity: 0, scale: 0.94, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: 20 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-3xl glass-panel bg-[#0c1222]/95 border border-white/15 rounded-3xl shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col"
+          exit={{ opacity: 0, scale: 0.94, y: 15 }}
+          transition={{ type: "spring", damping: 28, stiffness: 350 }}
+          className="relative w-full max-w-2xl glass-panel bg-[#0a0e1a]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
         >
           {/* Header Image with Gradient */}
-          <div className="relative h-56 sm:h-72 w-full overflow-hidden flex-shrink-0">
+          <div className="relative h-48 sm:h-56 w-full overflow-hidden flex-shrink-0 bg-slate-900">
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c1222] via-[#0c1222]/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e1a] via-[#0a0e1a]/50 to-transparent" />
             
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 transition-all hover:scale-110"
+              className="absolute top-4 right-4 p-2 rounded-full bg-black/60 hover:bg-black/80 text-slate-300 hover:text-white border border-white/20 transition-colors"
               aria-label="Close dialog"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
             {/* Title & Category Badge */}
             <div className="absolute bottom-4 left-6 right-6">
-              <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-2">
+              <span className="inline-block px-2.5 py-0.5 text-[11px] font-mono font-medium rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-1.5">
                 {project.category}
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 {project.title}
               </h2>
             </div>
           </div>
 
           {/* Scrollable Content */}
-          <div className="p-6 sm:p-8 space-y-6 overflow-y-auto custom-scrollbar flex-1">
+          <div className="p-6 space-y-5 overflow-y-auto flex-1">
             {/* Overview */}
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-indigo-400 mb-2 flex items-center gap-2">
-                <Zap className="w-4 h-4" /> System Overview
+              <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 text-indigo-400" /> System Overview
               </h3>
-              <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
+              <p className="text-slate-300 leading-relaxed text-sm">
                 {project.fullDetails?.overview || project.description}
               </p>
             </div>
 
-            {/* Tech Stack Chips */}
-            {project.fullDetails?.techStack && (
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-3 flex items-center gap-2">
-                  <Cpu className="w-4 h-4" /> Core Technologies
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.fullDetails.techStack.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 rounded-lg text-xs font-mono font-medium bg-slate-800/80 text-slate-200 border border-slate-700/60 shadow-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Architecture Highlights */}
             {project.fullDetails?.architecture && (
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3 flex items-center gap-2">
-                  <Layers className="w-4 h-4" /> Architecture & Key Features
+                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-sky-400" /> Architectural Highlights
                 </h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-2">
                   {project.fullDetails.architecture.map((arch, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-300">
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                       <span>{arch}</span>
                     </li>
@@ -130,16 +111,16 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             {/* Metrics & Performance */}
             {project.fullDetails?.metrics && (
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-purple-400 mb-3 flex items-center gap-2">
-                  <Database className="w-4 h-4" /> Engineering Highlights
+                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                  <Database className="w-3.5 h-3.5 text-emerald-400" /> Measurable Impact
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {project.fullDetails.metrics.map((metric, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-xl bg-slate-800/40 border border-white/5 text-xs sm:text-sm text-slate-200 flex items-center gap-2"
+                      className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-slate-200 flex items-center gap-2"
                     >
-                      <div className="w-2 h-2 rounded-full bg-purple-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                       <span>{metric}</span>
                     </div>
                   ))}
@@ -147,35 +128,56 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               </div>
             )}
 
+            {/* Tech Stack Chips */}
+            {project.fullDetails?.techStack && (
+              <div>
+                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                  <Cpu className="w-3.5 h-3.5 text-slate-400" /> Technologies Used
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.fullDetails.techStack.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-0.5 rounded text-xs font-mono bg-white/[0.04] text-slate-300 border border-white/10"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Action Buttons */}
-            <div className="pt-4 border-t border-white/10 flex flex-wrap gap-3">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-indigo-500/25 transition-all hover:scale-105"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Live Demo
-                </a>
-              )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white text-xs sm:text-sm font-semibold border border-white/10 transition-all hover:scale-105"
-                >
-                  <Github className="w-4 h-4" />
-                  GitHub Repository
-                </a>
-              )}
+            <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+              <div className="flex gap-2">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    Live System
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-medium border border-white/10 transition-colors"
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    Repository
+                  </a>
+                )}
+              </div>
               <button
                 onClick={onClose}
-                className="ml-auto px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs sm:text-sm font-medium border border-white/10 transition-colors"
+                className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs font-medium border border-white/10 transition-colors"
               >
-                Close View
+                Close
               </button>
             </div>
           </div>

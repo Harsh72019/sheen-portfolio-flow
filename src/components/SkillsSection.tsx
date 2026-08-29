@@ -1,205 +1,282 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Server,
   Database,
   Cloud,
   Code2,
-  Cpu,
-  Layers,
+  ChevronLeft,
+  ChevronRight,
   Zap,
-  Activity,
-  CheckCircle2,
-  Sparkles,
+  ArrowRight,
 } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface SkillItem {
   name: string;
   level: number;
   useCase: string;
-  color: string;
-  icon?: string;
 }
 
 interface SkillCategory {
+  id: string;
   title: string;
+  shortTitle: string;
   icon: React.ReactNode;
   description: string;
+  coreHighlight: string;
   skills: SkillItem[];
 }
 
 const skillCategories: SkillCategory[] = [
   {
-    title: "Core Backend & Message Queues",
-    icon: <Server className="w-5 h-5 text-indigo-400" />,
-    description: "High-concurrency event-driven services & queue architectures",
+    id: "backend",
+    title: "Distributed Systems & Backend Architecture",
+    shortTitle: "Core Backend",
+    icon: <Server className="w-4 h-4 text-indigo-400" />,
+    description: "Event-driven microservices, binary RPCs, and asynchronous queue architectures.",
+    coreHighlight: "Engineered sub-second event pipelines and background job schedulers.",
     skills: [
-      { name: "Node.js (Cluster)", level: 95, useCase: "Microservices & asynchronous I/O", color: "from-emerald-500 to-teal-500" },
-      { name: "gRPC & Protobuf", level: 86, useCase: "Low-latency binary inter-service RPC", color: "from-blue-500 to-cyan-500" },
-      { name: "BullMQ", level: 88, useCase: "Priority queues, delayed jobs & retries", color: "from-amber-500 to-orange-500" },
-      { name: "Apache Kafka", level: 85, useCase: "Event streaming & decoupled brokers", color: "from-cyan-500 to-blue-500" },
-      { name: "Redis", level: 88, useCase: "Pub/Sub, session storage & caching", color: "from-rose-500 to-red-600" },
-      { name: "Express.js", level: 95, useCase: "REST APIs & middleware chains", color: "from-indigo-500 to-purple-500" },
+      { name: "Node.js (Cluster & Async I/O)", level: 95, useCase: "High-concurrency microservices & non-blocking I/O" },
+      { name: "gRPC & Protocol Buffers", level: 86, useCase: "Low-latency binary inter-service RPC communication" },
+      { name: "Apache Kafka", level: 88, useCase: "Partitioned event streaming & decoupled message brokers" },
+      { name: "BullMQ Job Queues", level: 90, useCase: "Priority queues, delayed scheduling & auto-retry pipelines" },
+      { name: "Express.js / REST APIs", level: 95, useCase: "Robust middleware chains, validation & API security" },
     ],
   },
   {
-    title: "Databases & In-Memory Storage",
-    icon: <Database className="w-5 h-5 text-cyan-400" />,
-    description: "ACID transactions, document models & relational normalization",
+    id: "database",
+    title: "Databases & In-Memory Caching",
+    shortTitle: "Data & Storage",
+    icon: <Database className="w-4 h-4 text-sky-400" />,
+    description: "Sub-second indexing, ACID transactional integrity, and low-latency cache layers.",
+    coreHighlight: "Tuned complex query execution from 10s down to <0.1s using GIN indexes.",
     skills: [
-      { name: "PostgreSQL (GIN Indexes)", level: 92, useCase: "Sub-0.1s full-text search & query tuning", color: "from-blue-500 to-indigo-600" },
-      { name: "Redis In-Memory", level: 90, useCase: "Sub-millisecond data retrieval & caching", color: "from-red-500 to-rose-600" },
-      { name: "MongoDB & Mongoose", level: 88, useCase: "Document schemas & aggregation pipelines", color: "from-emerald-500 to-green-600" },
-      { name: "MySQL (Sequelize)", level: 85, useCase: "Structured relational models & stored procs", color: "from-sky-500 to-cyan-600" },
+      { name: "PostgreSQL (GIN Indexes & Tuning)", level: 92, useCase: "Query plan optimization & fast pattern matching" },
+      { name: "Redis (In-Memory & Pub/Sub)", level: 90, useCase: "Sub-millisecond caching & real-time session sync" },
+      { name: "MongoDB & Aggregation", level: 88, useCase: "Time-series data, document schemas & indexing" },
+      { name: "MySQL (Sequelize / Prisma)", level: 85, useCase: "Relational normalization, transactions & migrations" },
     ],
   },
   {
-    title: "Cloud, Infrastructure & DevOps",
-    icon: <Cloud className="w-5 h-5 text-purple-400" />,
-    description: "Container orchestration, telemetry monitoring & cloud compute",
+    id: "cloud",
+    title: "Cloud, Containers & Telemetry",
+    shortTitle: "Cloud & DevOps",
+    icon: <Cloud className="w-4 h-4 text-emerald-400" />,
+    description: "Containerization, cloud compute orchestration, and real-time observability.",
+    coreHighlight: "Containerized 10+ services for seamless production deployments.",
     skills: [
-      { name: "AWS (ECS / S3 / EC2)", level: 84, useCase: "Container orchestration & cloud compute", color: "from-amber-500 to-yellow-500" },
-      { name: "AWS CloudWatch", level: 85, useCase: "Metrics monitoring, alarms & log insights", color: "from-rose-500 to-pink-500" },
-      { name: "Docker & Containers", level: 82, useCase: "Service containerization & parity", color: "from-cyan-500 to-teal-500" },
-      { name: "Cloudinary & CDN", level: 85, useCase: "Automated media transformation", color: "from-blue-400 to-indigo-500" },
+      { name: "Docker & Containerization", level: 85, useCase: "Multi-stage builds & environment parity" },
+      { name: "AWS (ECS, EC2, S3)", level: 84, useCase: "Container tasks, cloud storage & compute instances" },
+      { name: "AWS CloudWatch & Logs", level: 86, useCase: "Telemetry monitoring, alarms & log insights" },
+      { name: "CI/CD & Deployment Pipelines", level: 82, useCase: "Automated test suites & continuous delivery" },
     ],
   },
   {
-    title: "Frontend & Full Stack Synergy",
-    icon: <Code2 className="w-5 h-5 text-emerald-400" />,
-    description: "Modern client-side frameworks & type safety",
+    id: "fullstack",
+    title: "Full-Stack Architecture & Tooling",
+    shortTitle: "Full-Stack",
+    icon: <Code2 className="w-4 h-4 text-amber-400" />,
+    description: "End-to-end type safety, duplex real-time sockets, and modern interfaces.",
+    coreHighlight: "Engineered responsive full-stack applications with sub-50ms WebSocket feeds.",
     skills: [
-      { name: "TypeScript", level: 82, useCase: "End-to-end type safety & interfaces", color: "from-blue-500 to-cyan-500" },
-      { name: "React.js", level: 75, useCase: "Dynamic responsive single-page apps", color: "from-cyan-400 to-blue-500" },
-      { name: "TailwindCSS", level: 85, useCase: "Modern responsive utility styling", color: "from-teal-400 to-emerald-500" },
-      { name: "REST & WebSockets", level: 92, useCase: "Full-duplex client-server APIs", color: "from-indigo-500 to-purple-600" },
+      { name: "TypeScript", level: 86, useCase: "Strict type safety across API contracts & schemas" },
+      { name: "WebSockets & Socket.IO", level: 92, useCase: "Full-duplex client-server real-time feeds" },
+      { name: "React.js & State Management", level: 80, useCase: "Performant responsive single-page interfaces" },
+      { name: "TailwindCSS & Component Systems", level: 85, useCase: "Modular, accessible, responsive design systems" },
     ],
   },
 ];
 
 const SkillsSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  // Carousel setup showing strictly 1 item at a time
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+    skipSnaps: false,
+  });
+
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(false);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((idx: number) => {
+    if (emblaApi) emblaApi.scrollTo(idx);
+    setSelectedIndex(idx);
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    const snap = emblaApi.selectedScrollSnap();
+    setSelectedIndex(snap);
+    setPrevDisabled(!emblaApi.canScrollPrev());
+    setNextDisabled(!emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-24 relative overflow-hidden" id="skills">
-      <div className="container mx-auto px-4 max-w-6xl relative z-10">
+    <section className="py-20 relative overflow-hidden" id="skills">
+      <div className="container mx-auto px-4 max-w-4xl relative z-10">
+        
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/25 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Cpu className="w-3.5 h-3.5" />
-            Engineering Matrix
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Skills & <span className="text-gradient-cyan">Technical Arsenal</span>
-          </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Battle-tested technologies and architectural tools used daily to engineer
-            scalable, fault-tolerant applications.
-          </p>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center sm:text-left"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Skills & Architecture
+            </h2>
+          </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {skillCategories.map((category, catIdx) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 40, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, delay: catIdx * 0.15, ease: "easeOut" }}
-              className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 bg-[#0a0f1e]/80 shadow-2xl flex flex-col justify-between hover:border-indigo-500/30 transition-colors"
+          {/* Carousel Arrows & Counter */}
+          <div className="flex items-center justify-center sm:justify-end gap-3">
+            <div className="text-xs font-mono text-slate-400 mr-1">
+              <span className="text-white font-semibold">{String(selectedIndex + 1).padStart(2, "0")}</span> /{" "}
+              <span>{String(skillCategories.length).padStart(2, "0")}</span>
+            </div>
+
+            <button
+              onClick={scrollPrev}
+              disabled={prevDisabled}
+              className={`p-2.5 rounded-full border transition-all ${
+                prevDisabled
+                  ? "border-white/5 text-slate-600 cursor-not-allowed bg-transparent"
+                  : "border-white/15 text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
+              }`}
+              aria-label="Previous skill category"
             >
-              {/* Category Header */}
-              <div className="mb-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 shadow-md">
-                    {category.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white tracking-tight">
-                      {category.title}
-                    </h3>
-                    <p className="text-xs text-slate-400">{category.description}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Skills Progress List */}
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIdx) => (
-                  <motion.div
-                    key={skill.name}
-                    whileHover={{ x: 3 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-1.5 cursor-default group"
-                  >
-                    <div className="flex items-center justify-between text-xs font-medium">
-                      <span className="text-slate-200 font-semibold group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
-                        {skill.name}
-                      </span>
-                      <span className="text-slate-400 text-[11px] font-mono group-hover:text-indigo-300 transition-colors">
-                        {skill.useCase}
-                      </span>
-                    </div>
-
-                    {/* Animated Progress Bar */}
-                    <div className="w-full bg-slate-800/80 rounded-full h-2 overflow-hidden p-0.5 border border-white/5">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{
-                          duration: 1.4,
-                          delay: catIdx * 0.1 + skillIdx * 0.06,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                        viewport={{ once: true }}
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} relative`}
-                      >
-                        <div className="absolute inset-0 bg-white/25 animate-pulse" />
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={scrollNext}
+              disabled={nextDisabled}
+              className={`p-2.5 rounded-full border transition-all ${
+                nextDisabled
+                  ? "border-white/5 text-slate-600 cursor-not-allowed bg-transparent"
+                  : "border-white/15 text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
+              }`}
+              aria-label="Next skill category"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Highlight Banner */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-12 p-6 rounded-3xl glass-card border border-indigo-500/20 bg-gradient-to-r from-indigo-950/40 via-[#0a0f1e]/80 to-purple-950/40 flex flex-col sm:flex-row items-center justify-between gap-6"
-        >
-          <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl font-bold flex-shrink-0">
-              ⚡
-            </div>
-            <div>
-              <h4 className="text-white font-bold text-base sm:text-lg">
-                Need a Custom Backend Architecture or Microservice Audit?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400">
-                I help startups and enterprises reduce latency, eliminate bottlenecks, and scale Kafka/Redis pipelines.
-              </p>
-            </div>
-          </div>
+        {/* Interactive Category Tabs */}
+        <div className="flex flex-wrap items-center gap-2 mb-6 justify-center sm:justify-start">
+          {skillCategories.map((cat, idx) => {
+            const isActive = selectedIndex === idx;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => scrollTo(idx)}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  isActive
+                    ? "bg-white/[0.1] text-white border border-white/20 font-semibold shadow-sm"
+                    : "bg-white/[0.02] text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] border border-white/5"
+                }`}
+              >
+                {cat.icon}
+                <span>{cat.shortTitle}</span>
+              </button>
+            );
+          })}
+        </div>
 
-          <a
-            href="#contact"
-            className="flex-shrink-0 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-indigo-600/30 transition-all hover:scale-105"
-          >
-            Consult with Harsh
-          </a>
-        </motion.div>
+        {/* Single Item Carousel View (100% width) */}
+        <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex -ml-4">
+            {skillCategories.map((category) => (
+              <div
+                key={category.id}
+                className="pl-4 min-w-0 flex-[0_0_100%]"
+              >
+                <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 bg-[#0a0f1d]/90 shadow-xl flex flex-col justify-between space-y-6">
+                  
+                  {/* Category Header */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10">
+                        {category.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white tracking-tight">
+                          {category.title}
+                        </h3>
+                        <p className="text-xs text-slate-400 mt-0.5">{category.description}</p>
+                      </div>
+                    </div>
+
+                    {/* Architectural highlight pill */}
+                    <div className="px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300 flex items-center gap-2 mt-3">
+                      <Zap className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+                      <span className="text-xs font-mono">{category.coreHighlight}</span>
+                    </div>
+                  </div>
+
+                  {/* Skills Progress List */}
+                  <div className="space-y-4 pt-1">
+                    {category.skills.map((skill) => (
+                      <div key={skill.name} className="space-y-1.5 group">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-slate-200 font-medium">
+                            {skill.name}
+                          </span>
+                          <span className="text-slate-400 text-[11px] font-mono">
+                            {skill.useCase}
+                          </span>
+                        </div>
+
+                        {/* Progress Bar */}
+                        <div className="w-full bg-slate-800/60 rounded-full h-1.5 overflow-hidden">
+                          <div
+                            style={{ width: `${skill.level}%` }}
+                            className="h-full rounded-full bg-slate-400 group-hover:bg-indigo-400 transition-colors duration-300"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Carousel Pagination Dots */}
+        {scrollSnaps.length > 1 && (
+          <div className="flex items-center justify-center gap-1.5 mt-6">
+            {scrollSnaps.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => scrollTo(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === selectedIndex
+                    ? "w-6 bg-indigo-500"
+                    : "w-1.5 bg-white/20 hover:bg-white/40"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
       </div>
     </section>
   );

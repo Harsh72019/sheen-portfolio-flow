@@ -10,11 +10,11 @@ import Footer from "../components/Footer";
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#05070e] text-slate-100 relative selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden">
-      {/* Dynamic Background Effects (Ambient Orbs, Constellation Canvas & Grid) */}
+    <div className="min-h-screen bg-[#070a12] text-slate-100 relative selection:bg-indigo-500/20 selection:text-slate-100 overflow-x-hidden">
+      {/* Ambient Canvas and Grid */}
       <BackgroundEffects />
 
-      {/* Floating Glassmorphic Top Navbar */}
+      {/* Floating Top Navbar */}
       <Navbar />
 
       {/* Main Content Sections */}
