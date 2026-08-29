@@ -28,6 +28,8 @@ const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = React.useRef(0);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -38,11 +40,24 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 40);
+
+      // Smart auto-hide on mobile: Hide when scrolling down, show when scrolling up
+      if (currentScrollY < 60) {
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 8 && currentScrollY > 100) {
+        if (!mobileMenuOpen) {
+          setVisible(false);
+        }
+      } else if (currentScrollY < lastScrollY.current - 8) {
+        setVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
 
       // Section spy
       const sections = navItems.map((item) => item.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = currentScrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -53,9 +68,9 @@ const Navbar: React.FC = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -66,12 +81,12 @@ const Navbar: React.FC = () => {
       />
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "py-3" : "py-5"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform ${
+          visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 md:translate-y-0 md:opacity-100 pointer-events-none md:pointer-events-auto"
+        } ${scrolled ? "py-2.5" : "py-4 sm:py-5"}`}
       >
-        <div className="container mx-auto px-4 max-w-6xl">
-          <nav className="glass-panel px-4 sm:px-6 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 backdrop-blur-xl bg-[#090d18]/85">
+        <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
+          <nav className="glass-panel px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 backdrop-blur-xl bg-[#090d18]/85">
             {/* Brand Logo */}
             <a
               href="#hero"
@@ -116,8 +131,8 @@ const Navbar: React.FC = () => {
               })}
             </div>
 
-            {/* Right CTAs */}
-            <div className="hidden lg:flex items-center gap-2.5">
+            {/* Desktop & Tablet CTAs */}
+            <div className="hidden md:flex items-center gap-2.5">
               <a
                 href={resumePdf}
                 download="Harsh_Bali_Resume.pdf"
@@ -138,18 +153,29 @@ const Navbar: React.FC = () => {
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-white/5 text-slate-300 hover:text-white border border-white/10 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-4 h-4" />
-              ) : (
-                <Menu className="w-4 h-4" />
-              )}
-            </button>
+            {/* Mobile Actions: Direct "Get in Touch" Button + Drawer Menu Button */}
+            <div className="flex items-center gap-2 md:hidden">
+              <a
+                href="#contact"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-full transition-colors shadow-sm"
+              >
+                <Send className="w-3 h-3" />
+                <span>Contact</span>
+              </a>
+
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-full bg-white/5 text-slate-300 hover:text-white border border-white/10 transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-4 h-4" />
+                ) : (
+                  <Menu className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+
           </nav>
         </div>
       </header>
@@ -226,6 +252,28 @@ const Navbar: React.FC = () => {
               </a>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Mobile Quick Action Pill (Appears when scrolled past hero) */}
+      <AnimatePresence>
+        {scrolled && (
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0, scale: 0.85, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 15 }}
+            transition={{ duration: 0.25 }}
+            className="fixed bottom-5 right-4 z-40 md:hidden flex items-center gap-2 px-3.5 py-2 rounded-full bg-indigo-600 text-white text-xs font-semibold shadow-2xl border border-indigo-400/30 backdrop-blur-md active:scale-95 transition-transform"
+            aria-label="Get in Touch"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+            </span>
+            <span>Get in Touch</span>
+            <Send className="w-3 h-3" />
+          </motion.a>
         )}
       </AnimatePresence>
     </>
